@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabbithole - Discover Music by Connections</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/rabbithole.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, sans-serif;
+            background: #f5f5f5;
+        }
+        .demo-header {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
+        .demo-header h1 {
+            font-family: 'VT323', monospace;
+            font-size: 48px;
+            margin: 0;
+            color: #2d5016;
+        }
+        .demo-header p {
+            color: #666;
+            font-style: italic;
+        }
+        #player-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .controls {
+            padding: 20px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .controls button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .controls button.primary {
+            background: #4a7c59;
+            color: white;
+        }
+        .controls button.secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .status {
+            padding: 10px 20px;
+            font-size: 13px;
+            color: #666;
+            background: #f0f0f0;
+        }
+        #next-up {
+            padding: 10px 20px;
+            background: #fff9e6;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>🐰 rabbithole</h1>
+        <p>discover music by connections, not algorithms</p>
+    </div>
+
+    <div id="player-container">
+        <div id="rabbithole-player">
+            <div style="padding: 40px; text-align: center; color: #666;">
+                Loading player...
+            </div>
+        </div>
+
+        <div id="ensemble-display" style="padding: 10px;"></div>
+        <div id="parts-chart" style="padding: 10px;"></div>
+
+        <div id="next-up">
+            <strong>🐰 Next up:</strong> <span id="next-song">Select a musician to follow</span>
+        </div>
+
+        <div class="controls">
+            <button class="primary" onclick="playSong('august')">Play: August</button>
+            <button class="secondary" onclick="player.playPrevious()">⏮ Previous</button>
+            <button class="secondary" onclick="player.playNext()">Next ⏭</button>
+        </div>
+
+        <div class="status" id="status">
+            Ready. Click a song to start, then click musicians to explore connections.
+        </div>
+    </div>
+
+    <script type="module">
+        import { RabbitholePlayer, StaticCatalog } from '/src/index.js';
+
+        // Demo catalog with sample data
+        const demoCatalog = new StaticCatalog({
+            'august': {
+                title: 'August',
+                slug: 'august',
+                audioFile: 'https://justinholmes.com/audio/august.mp3',
+                duration: 245,
+                ensemble: {
+                    'Justin Holmes': ['guitar', 'six-whistle'],
+                    'Cory Walker': ['banjo'],
+                    'Harry Clark': ['mandolin'],
+                    'Skyler Golden': ['bass']
+                },
+                timeline: {},
+                release: 'Vowel Sounds'
+            }
+        }, {
+            // Musician connections
+            'Justin Holmes': [
+                { song: 'Barlows Jig', context: 'Guitar on Vowel Sounds session' },
+                { song: 'Paint Exchange', context: 'Guitar, whistles' }
+            ],
+            'Cory Walker': [
+                { song: 'August', context: 'Banjo on Vowel Sounds' },
+                { song: 'Silver 44', context: 'Banjo on studio session' }
+            ]
+        });
+
+        // Initialize player
+        const player = new RabbitholePlayer({
+            containerId: 'rabbithole-player',
+            catalog: demoCatalog,
+            onSongChange: (track) => {
+                document.getElementById('status').textContent = `Now playing: ${track.title}`;
+            },
+            onMusicianClick: async (name) => {
+                document.getElementById('status').textContent = `Clicked: ${name}`;
+                // Show connections
+                const connections = await demoCatalog.getMusicianConnections(name);
+                console.log('Connections for', name, ':', connections);
+            },
+            onNextUp: (nextSong) => {
+                const el = document.getElementById('next-song');
+                if (nextSong.songTitle === 'No songs queued') {
+                    el.textContent = `${nextSong.viaMusician} has no rabbithole songs yet`;
+                } else {
+                    el.textContent = `${nextSong.songTitle} via ${nextSong.viaMusician}`;
+                }
+            }
+        });
+
+        await player.init();
+        window.player = player;
+
+        window.playSong = (slug) => player.playSong(slug);
+    </script>
+</body>
+</html>

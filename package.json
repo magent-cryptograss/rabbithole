@@ -1,0 +1,57 @@
+{
+  "name": "@cryptograss/rabbithole",
+  "version": "0.1.0",
+  "description": "Discover music by connections, not algorithms",
+  "type": "module",
+  "main": "dist/rabbithole.js",
+  "module": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./dist/rabbithole.cjs"
+    },
+    "./player": "./src/player/index.js",
+    "./state": "./src/state.js",
+    "./catalog": "./src/catalog.js",
+    "./styles": "./src/styles/rabbithole.css"
+  },
+  "files": [
+    "src/",
+    "dist/"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/",
+    "test": "vitest"
+  },
+  "keywords": [
+    "music",
+    "player",
+    "audio",
+    "visualization",
+    "connections",
+    "bluegrass",
+    "traditional-music",
+    "webamp"
+  ],
+  "author": "CryptoGrass",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cryptograss/rabbithole"
+  },
+  "bugs": {
+    "url": "https://github.com/cryptograss/rabbithole/issues"
+  },
+  "homepage": "https://justinholmes.com/rabbithole",
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.0.0"
+  },
+  "peerDependencies": {
+    "webamp": "^1.5.0"
+  }
+}

@@ -1,0 +1,655 @@
+/**
+ * Rabbithole Player Styles
+ * "discover music by connections, not algorithms"
+ */
+
+/* ============================================
+   Base & Reset
+   ============================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body.rabbithole-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #ffffff;
+    color: #333333;
+    overflow: auto;
+    min-height: 100vh;
+}
+
+/* Reset text-shadow for entire rabbithole player */
+.player-container,
+.player-container * {
+    text-shadow: none !important;
+}
+
+/* ============================================
+   Player Container & Layout
+   ============================================ */
+
+.player-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+
+.player-header {
+    background: linear-gradient(135deg, #9db89a 0%, #87a96b 100%);
+    padding: 6px 20px;
+    border-bottom: 2px solid #4a7c59;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.player-title {
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'VT323', monospace;
+    color: #2d5016;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.player-subtitle {
+    font-size: 11px;
+    color: white;
+    margin-top: -2px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.rabbit-icon {
+    height: 39px;
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.toggle-mode-btn {
+    background: #4a7c59;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    color: #c8dbbe;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-mode-btn:hover {
+    background: #2d5016;
+    transform: translateY(-1px);
+}
+
+.toggle-mode-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   Song Info Header
+   ============================================ */
+
+.song-info-header {
+    text-align: center;
+    padding-bottom: 2px;
+    margin-bottom: 0;
+}
+
+.song-title-display {
+    font-family: 'Caveat', cursive, sans-serif;
+    font-size: 22px;
+    margin: 0 0 2px 0;
+    color: #2d5016;
+}
+
+.recording-metadata {
+    font-size: 10px;
+    color: #666;
+}
+
+.recording-metadata span {
+    margin: 0 4px;
+}
+
+/* ============================================
+   Main Content Area
+   ============================================ */
+
+.player-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 20px;
+    overflow: visible;
+    transition: all 0.3s ease;
+}
+
+/* Parts chart row - spans full width above player */
+.parts-chart-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* ============================================
+   Footer Mode (Minimized)
+   ============================================ */
+
+.player-container.footer-mode {
+    height: 80px;
+}
+
+.player-container.footer-mode .player-header {
+    padding: 8px 16px;
+}
+
+.player-container.footer-mode .player-title {
+    font-size: 14px;
+}
+
+.player-container.footer-mode .player-subtitle {
+    display: none;
+}
+
+.player-container.footer-mode .player-content {
+    display: none;
+}
+
+.player-container.footer-mode .webamp-wrapper {
+    padding: 4px;
+}
+
+.player-container.footer-mode .upload-section {
+    display: none;
+}
+
+/* Mini player in footer mode */
+.mini-player {
+    display: none;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 16px;
+    background: #fafafa;
+    border-top: 1px solid #e0e0e0;
+}
+
+.player-container.footer-mode .mini-player {
+    display: flex;
+}
+
+.mini-player .song-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mini-player .current-musicians {
+    font-size: 11px;
+    color: #666;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mini-player .lead-musician {
+    color: #4a7c59;
+    font-weight: 600;
+}
+
+/* ============================================
+   Left Panel (Webamp & Ensemble)
+   ============================================ */
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+}
+
+.ensemble-display {
+    display: none; /* Hide static ensemble - dynamically created inside Webamp */
+}
+
+.ensemble-display h3 {
+    display: none;
+}
+
+/* ============================================
+   Right Panel (Parts Chart & Connections)
+   ============================================ */
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+}
+
+/* ============================================
+   Parts Chart
+   ============================================ */
+
+.parts-chart {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.part-box {
+    padding: 4px 10px;
+    background: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    color: #999;
+    font-family: 'Caveat', cursive, Arial;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.part-box.active {
+    padding: 14px 24px;
+    background: #4a7c59;
+    font-size: 28px;
+    color: #ffffff;
+    border: 2px solid #2d5016;
+    box-shadow: 0 0 20px rgba(74, 124, 89, 0.4);
+    transform: scale(1.05);
+}
+
+/* ============================================
+   Musician Cards
+   ============================================ */
+
+.musician-card {
+    padding: 6px 8px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    margin: 4px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.musician-card.out {
+    opacity: 0.3;
+    background: #f5f5f5;
+}
+
+.musician-card.lead {
+    border: 2px solid #4a7c59;
+    background: rgba(74, 124, 89, 0.1);
+    animation: pulse-glow 3s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(74, 124, 89, 0.3);
+}
+
+.musician-card.pickup {
+    border: 2px solid #87a96b;
+    background: rgba(135, 169, 107, 0.1);
+    color: #87a96b;
+}
+
+.musician-name {
+    font-weight: 600;
+    font-family: 'Caveat', cursive, Arial;
+    font-size: 18px;
+    margin-bottom: 2px;
+    color: #333;
+}
+
+.musician-name.clickable {
+    cursor: pointer;
+    color: #4a7c59;
+}
+
+.musician-name.clickable:hover {
+    text-decoration: underline;
+}
+
+.chartifact-line {
+    font-size: 9px;
+    color: #666;
+    font-family: monospace;
+}
+
+/* ============================================
+   Connections Panel
+   ============================================ */
+
+.connections-panel {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    width: 320px;
+    max-height: 60vh;
+    background: #ffffff;
+    border: 2px solid #4a7c59;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 10000;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(50px);
+}
+
+.connections-panel.visible {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.connections-header {
+    background: linear-gradient(135deg, #9db89a 0%, #87a96b 100%);
+    color: #2d5016;
+    padding: 12px 15px;
+    font-weight: 600;
+    font-size: 13px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px 6px 0 0;
+}
+
+.connections-close {
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.connections-close:hover {
+    opacity: 1;
+}
+
+.connections-content {
+    padding: 15px;
+    background: #fafafa;
+}
+
+.connection-song {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: #ffffff;
+    border-left: 3px solid #4a7c59;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.connection-song:hover {
+    transform: translateX(2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.connection-song-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.connection-context {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.connections-content a {
+    color: #4a7c59;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.connections-content a:hover {
+    text-decoration: underline;
+}
+
+/* Playable song styling */
+.connection-song.playable {
+    border-left-color: #8b5cf6;
+}
+
+.connection-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.connection-actions button {
+    padding: 4px 8px;
+    font-size: 11px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.connection-actions button:first-child {
+    background: #4a7c59;
+    color: white;
+}
+
+.connection-actions button:first-child:hover {
+    background: #3d6a4a;
+}
+
+.connection-actions button:last-child {
+    background: #8b5cf6;
+    color: white;
+}
+
+.connection-actions button:last-child:hover {
+    background: #7c3aed;
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.loading-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(74, 124, 89, 0.2);
+    border-top-color: #4a7c59;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #4a7c59;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 15px rgba(74, 124, 89, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(74, 124, 89, 0.5); }
+}
+
+/* ============================================
+   Upload Section
+   ============================================ */
+
+.upload-section {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 11px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-section label {
+    color: #666;
+    margin-right: 8px;
+}
+
+.upload-section input[type="file"] {
+    font-size: 11px;
+    color: #333;
+}
+
+#cache-status {
+    font-size: 10px;
+    margin-top: 4px;
+    color: #666;
+    display: none;
+}
+
+#clear-cache-btn {
+    margin-left: 8px;
+    font-size: 10px;
+    padding: 2px 6px;
+    background: #4a7c59;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    display: none;
+}
+
+#clear-cache-btn:hover {
+    background: #2d5016;
+}
+
+/* ============================================
+   Status Indicators
+   ============================================ */
+
+.status-indicators {
+    display: flex;
+    gap: 12px;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 11px;
+    font-family: 'VT323', monospace;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-indicator .label {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.status-indicator .value {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-indicator .value.local {
+    background: #4a7c59;
+    color: white;
+}
+
+.status-indicator .value.stream {
+    background: #8b5cf6;
+    color: white;
+}
+
+/* ============================================
+   Rabbithole Icon
+   ============================================ */
+
+.rabbithole-icon {
+    display: inline;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+/* ============================================
+   Playlist Popup
+   ============================================ */
+
+#rabbithole-playlist-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #faf7f2;
+    border: 2px solid #1a365d;
+    border-radius: 8px;
+    padding: 16px;
+    min-width: 280px;
+    max-width: 400px;
+    z-index: 10000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+}
+
+/* ============================================
+   Next Up Display
+   ============================================ */
+
+#rabbithole-next-up {
+    padding: 10px;
+    margin-top: 10px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    font-size: 12px;
+}
