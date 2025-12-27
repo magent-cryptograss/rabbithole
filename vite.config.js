@@ -20,6 +20,13 @@ export default defineConfig({
     },
     server: {
         port: 5173,
-        open: true
+        open: true,
+        allowedHosts: [
+            'justin0.hunter.cryptograss.live',
+            'justin1.hunter.cryptograss.live',
+            'justin2.hunter.cryptograss.live',
+            'localhost',
+            '127.0.0.1'
+        ]
     }
 });

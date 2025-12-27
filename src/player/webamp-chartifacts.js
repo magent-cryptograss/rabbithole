@@ -2028,4 +2028,8 @@ class WebampChartifacts {
 }
 
 // Export for use in pages
-window.WebampChartifacts = WebampChartifacts;
+if (typeof window !== 'undefined') {
+    window.WebampChartifacts = WebampChartifacts;
+}
+
+export default WebampChartifacts;

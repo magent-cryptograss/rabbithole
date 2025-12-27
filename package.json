@@ -47,11 +47,14 @@
   },
   "homepage": "https://justinholmes.com/rabbithole",
   "devDependencies": {
+    "eslint": "^8.0.0",
     "vite": "^5.0.0",
-    "vitest": "^1.0.0",
-    "eslint": "^8.0.0"
+    "vitest": "^1.0.0"
   },
   "peerDependencies": {
     "webamp": "^1.5.0"
+  },
+  "dependencies": {
+    "packery": "^3.0.0"
   }
 }
