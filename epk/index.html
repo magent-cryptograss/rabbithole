@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Holmes | Electronic Press Kit</title>
+    <meta name="description" content="Bluegrass musician, software engineer, and blockchain innovator. Book Justin Holmes and The Immutable String Band for your event.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d5016;
+            --primary-light: #4a7c59;
+            --accent: #d4a574;
+            --dark: #1a1a1a;
+            --light: #f5f5f0;
+            --text: #333;
+            --text-light: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--light);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: var(--light);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/images/thumb/e/ec/Justin-st-pete-thompson.jpg/280px-Justin-st-pete-thompson.jpg') center/cover;
+            opacity: 0.15;
+        }
+
+        .hero .container {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: var(--light);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Music Section */
+        .music {
+            background: var(--light);
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .album-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .album-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .album-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .album-info {
+            padding: 20px;
+        }
+
+        .album-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .album-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Video Section */
+        .videos {
+            background: var(--dark);
+            color: white;
+        }
+
+        .videos .section-title h2 {
+            color: white;
+        }
+
+        .videos .section-title p {
+            color: #999;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .video-card iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-card .placeholder {
+            width: 100%;
+            height: 100%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        /* Offerings Section */
+        .offerings {
+            background: white;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .offering-card {
+            background: var(--light);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .offering-card:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .offering-card:hover h4,
+        .offering-card:hover p {
+            color: white;
+        }
+
+        .offering-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .offering-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .offering-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Booking Section */
+        .booking {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .booking .section-title h2 {
+            color: white;
+        }
+
+        .booking .section-title p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .booking-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .booking-info p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .booking-info ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .booking-info li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .booking-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            color: var(--text);
+        }
+
+        .booking-form h3 {
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Gallery */
+        .gallery {
+            background: var(--light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: #999;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero .container,
+            .about-grid,
+            .booking-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .music-grid,
+            .offerings-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .music-grid,
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Justin Holmes</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#music">Music</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#offerings">Offerings</a></li>
+                <li><a href="#booking">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Justin Holmes</h1>
+                <p class="tagline">Bluegrass. Blockchain. Beyond.</p>
+                <p>Musician, software engineer, and blockchain innovator bridging traditional music with cutting-edge technology. Founder of Cryptograss and The Immutable String Band.</p>
+                <a href="#booking" class="btn">Book Now</a>
+                <a href="#music" class="btn btn-outline">Listen</a>
+            </div>
+            <div class="hero-image">
+                <img src="/images/thumb/e/ec/Justin-st-pete-thompson.jpg/280px-Justin-st-pete-thompson.jpg" alt="Justin Holmes playing guitar">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About</h2>
+                <p>Where bluegrass meets the blockchain</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="/images/thumb/4/42/Justin-seoul-sesame.jpg/200px-Justin-seoul-sesame.jpg" alt="Justin Holmes">
+                </div>
+                <div class="about-content">
+                    <h3>Traditional Music for the Digital Age</h3>
+                    <p>Justin Holmes is probably best known in bluegrass circles as "that throatsinging dude/guy." He plays guitar, mandolin, melodica, and tin whistle in his touring, rotating bluegrass band, The Immutable String Band.</p>
+                    <p>With thousands of published contributions to open source cryptography and web codebases, Justin was until recently better known as a software engineer than a musician. His music blends bluegrass, old-time, and traditional music from around the world, with lyrics about cryptography, privacy, artificial intelligence, and the evolution of the internet.</p>
+                    <p>Justin has been learning and practicing Tuvan Throatsinging and other overtone singing styles since 2004, and holds a brown belt in isshinryu karate.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Live Shows</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">1000s</div>
+                            <div class="stat-label">Code Commits</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Years Touring</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="music">
+        <div class="container">
+            <div class="section-title">
+                <h2>Music</h2>
+                <p>Albums, singles, and collaborations</p>
+            </div>
+            <div class="music-grid">
+                <div class="album-card">
+                    <img src="/images/thumb/4/43/JustinHolmesSession1_1.1.1.jpg/300px-JustinHolmesSession1_1.1.1.jpg" alt="Vowel Sounds Album">
+                    <div class="album-info">
+                        <h4>Vowel Sounds</h4>
+                        <p>2024 - Full Album</p>
+                    </div>
+                </div>
+                <div class="album-card">
+                    <img src="/images/thumb/c/cf/EthDenver-stage-with-the-boys2.jpg/300px-EthDenver-stage-with-the-boys2.jpg" alt="4masks Album">
+                    <div class="album-info">
+                        <h4>4masks</h4>
+                        <p>Coming Soon</p>
+                    </div>
+                </div>
+                <div class="album-card">
+                    <img src="/images/thumb/3/33/Skyler-justin-cory.jpeg/300px-Skyler-justin-cory.jpeg" alt="Sessions">
+                    <div class="album-info">
+                        <h4>Session Recordings</h4>
+                        <p>Live & Studio Sessions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="videos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Videos</h2>
+                <p>Performances, talks, and behind the scenes</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="placeholder">Performance Video 1</div>
+                </div>
+                <div class="video-card">
+                    <div class="placeholder">Performance Video 2</div>
+                </div>
+                <div class="video-card">
+                    <div class="placeholder">Conference Talk</div>
+                </div>
+                <div class="video-card">
+                    <div class="placeholder">Behind the Scenes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offerings" class="offerings">
+        <div class="container">
+            <div class="section-title">
+                <h2>Offerings</h2>
+                <p>Live music, talks, and workshops</p>
+            </div>
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <div class="offering-icon">🎸</div>
+                    <h4>Live Performance</h4>
+                    <p>Full band shows with The Immutable String Band, solo acoustic sets, or duo configurations. Bluegrass, old-time, and original music.</p>
+                </div>
+                <div class="offering-card">
+                    <div class="offering-icon">🎤</div>
+                    <h4>Conference Talks</h4>
+                    <p>Keynotes and presentations on blockchain technology, decentralized systems, and the intersection of music and technology.</p>
+                </div>
+                <div class="offering-card">
+                    <div class="offering-icon">🎓</div>
+                    <h4>Workshops</h4>
+                    <p>Hands-on sessions covering Tuvan throatsinging, blockchain basics for musicians, or music theory for developers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book Justin</h2>
+                <p>For performances, talks, and appearances</p>
+            </div>
+            <div class="booking-grid">
+                <div class="booking-info">
+                    <h3>Let's Make Something Happen</h3>
+                    <p>Whether you're looking for a full band bluegrass show, a tech conference keynote, or a unique workshop experience, I'd love to hear about your event.</p>
+                    <ul>
+                        <li><span>Full Band Performance</span><span>3-6 piece band</span></li>
+                        <li><span>Solo/Duo Acoustic</span><span>Intimate settings</span></li>
+                        <li><span>Conference Talk</span><span>30-60 minutes</span></li>
+                        <li><span>Workshop</span><span>1-3 hours</span></li>
+                        <li><span>Private Event</span><span>Custom packages</span></li>
+                    </ul>
+                    <p><strong>Based in:</strong> St. Petersburg, FL<br>
+                    <strong>Touring:</strong> Worldwide</p>
+                </div>
+                <div class="booking-form">
+                    <h3>Send an Inquiry</h3>
+                    <form id="booking-form" action="#" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-type">Event Type</label>
+                                <select id="event-type" name="event-type">
+                                    <option value="">Select...</option>
+                                    <option value="performance">Live Performance</option>
+                                    <option value="talk">Conference Talk</option>
+                                    <option value="workshop">Workshop</option>
+                                    <option value="private">Private Event</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Preferred Date</label>
+                                <input type="date" id="date" name="date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Event Location</label>
+                            <input type="text" id="location" name="location" placeholder="City, Venue, or Virtual">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell me about your event</label>
+                            <textarea id="message" name="message" placeholder="Expected attendance, budget range, any special requests..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+                <p>On stage and behind the scenes</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/images/thumb/e/ec/Justin-st-pete-thompson.jpg/300px-Justin-st-pete-thompson.jpg" alt="Performance photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="/images/thumb/4/42/Justin-seoul-sesame.jpg/300px-Justin-seoul-sesame.jpg" alt="Performance photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="/images/thumb/c/cf/EthDenver-stage-with-the-boys2.jpg/300px-EthDenver-stage-with-the-boys2.jpg" alt="Performance photo">
+                </div>
+                <div class="gallery-item">
+                    <img src="/images/thumb/3/33/Skyler-justin-cory.jpeg/300px-Skyler-justin-cory.jpeg" alt="Performance photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Justin Holmes</h3>
+                    <p>Bluegrass musician, software engineer, and blockchain innovator. Building a better future for traditional music.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/justinholmes" title="Twitter">𝕏</a>
+                        <a href="https://github.com/jmyles" title="GitHub">GH</a>
+                        <a href="https://justinholmes.com" title="Website">🌐</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#music">Music</a></li>
+                        <li><a href="#videos">Videos</a></li>
+                        <li><a href="#booking">Book Now</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="https://cryptograss.live">Cryptograss</a></li>
+                        <li><a href="https://pickipedia.xyz">PickiPedia</a></li>
+                        <li><a href="#">Revealer</a></li>
+                        <li><a href="#">Blue Railroad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Justin Holmes. Part of the <a href="https://cryptograss.live" style="color: var(--accent);">Cryptograss</a> ecosystem.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // For now, just show confirmation
+            // TODO: Connect to actual form backend
+            alert('Thank you for your inquiry! Justin will get back to you soon.');
+            this.reset();
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(26, 26, 26, 0.98)';
+            } else {
+                nav.style.background = 'rgba(26, 26, 26, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
