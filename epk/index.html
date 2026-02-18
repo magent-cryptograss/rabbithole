@@ -305,8 +305,12 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 2fr 1fr;
             gap: 30px;
+        }
+
+        .video-card.featured {
+            grid-row: span 2;
         }
 
         .video-card {
@@ -691,7 +695,8 @@
         <div class="container">
             <div class="section-title">
                 <h2>Offerings</h2>
-                <p>Live music, talks, and workshops</p>
+                <p>Live music, talks, podcasts</p>
+                <p>and custom packages for any event</p>
             </div>
             <div class="offerings-grid">
                 <div class="offering-card">
@@ -703,17 +708,17 @@
                 </div>
                 <div class="offering-card">
                     <div class="offering-image">
-                        <img src="" alt="Live Talks" class="placeholder">
+                        <img src="images/live-talks.png" alt="Live Talks">
                     </div>
                     <h4>Live Talks</h4>
                     <p>Keynotes and presentations on blockchain technology, decentralized systems, and the intersection of music and technology.</p>
                 </div>
                 <div class="offering-card">
                     <div class="offering-image">
-                        <img src="" alt="Workshops" class="placeholder">
+                        <img src="https://img.youtube.com/vi/Y3s9Fu4yu7o/hqdefault.jpg" alt="Podcasts">
                     </div>
-                    <h4>Workshops</h4>
-                    <p>Hands-on sessions covering Tuvan throatsinging, blockchain basics for musicians, or music theory for developers.</p>
+                    <h4>Podcasts</h4>
+                    <p>Guest appearances on podcasts discussing blockchain, music, technology, and the future of decentralized creative economies.</p>
                 </div>
             </div>
         </div>
@@ -792,17 +797,14 @@
                 <p>Performances, talks, and behind the scenes</p>
             </div>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="placeholder">Performance Video 1</div>
+                <div class="video-card featured">
+                    <iframe src="https://www.youtube.com/embed/UqVmvH3Ltd4" title="Justin Holmes Performance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-card">
-                    <div class="placeholder">Performance Video 2</div>
+                    <iframe src="https://www.youtube.com/embed/Y3s9Fu4yu7o" title="The unlikely shared origins of bluegrass and blockchains" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-card">
-                    <div class="placeholder">Live Talk</div>
-                </div>
-                <div class="video-card">
-                    <div class="placeholder">Behind the Scenes</div>
+                    <iframe src="https://www.youtube.com/embed/YIxg0Qcdf94" title="Justin Holmes Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -817,12 +819,12 @@
             <div class="booking-grid">
                 <div class="booking-info">
                     <h3>Let's Make Something Happen</h3>
-                    <p>Whether you're looking for a full band bluegrass show, a tech conference keynote, or a unique workshop experience, I'd love to hear about your event.</p>
+                    <p>Whether you're looking for a full band bluegrass show, a tech conference keynote, or a podcast guest appearance, I'd love to hear about your event.</p>
                     <ul>
                         <li><span>Full Band Performance</span><span>3-6 piece band</span></li>
                         <li><span>Solo/Duo Acoustic</span><span>Intimate settings</span></li>
                         <li><span>Live Talk</span><span>30-60 minutes</span></li>
-                        <li><span>Workshop</span><span>1-3 hours</span></li>
+                        <li><span>Podcast</span><span>30-90 minutes</span></li>
                         <li><span>Private Event</span><span>Custom packages</span></li>
                     </ul>
                     <p><strong>Based in:</strong> St. Petersburg, FL<br>
@@ -848,7 +850,7 @@
                                     <option value="">Select...</option>
                                     <option value="performance">Live Performance</option>
                                     <option value="talk">Live Talk</option>
-                                    <option value="workshop">Workshop</option>
+                                    <option value="podcast">Podcast</option>
                                     <option value="private">Private Event</option>
                                     <option value="other">Other</option>
                                 </select>
