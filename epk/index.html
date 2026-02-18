@@ -330,6 +330,63 @@
             border-bottom: none;
         }
 
+        .track-row {
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .track-row:hover {
+            color: var(--primary);
+        }
+
+        .track-row:hover .play-btn {
+            background: var(--primary);
+        }
+
+        .track-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-item .bandcamp-embed {
+            display: none;
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+
+        .track-item.playing .bandcamp-embed {
+            display: block;
+        }
+
+        .track-item.playing .play-btn {
+            background: var(--primary);
+        }
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play-btn:hover {
+            background: #555;
+            transform: scale(1.1);
+        }
+
+
         /* Video Section */
         .videos {
             background: var(--dark);
@@ -346,12 +403,8 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
-        }
-
-        .video-card.featured {
-            grid-row: span 2;
         }
 
         .video-card {
@@ -861,16 +914,46 @@
                         <div class="track-dropdown">
                             <button class="track-toggle">View Tracks ▼</button>
                             <ol class="track-list">
-                                <li>Lost</li>
-                                <li>Hell or High Water (A Policeman and a Fortune Teller)</li>
-                                <li>Cork Board</li>
-                                <li>Power Underneath</li>
-                                <li>return(Place)</li>
-                                <li>Vowel Sounds</li>
-                                <li>gm☕</li>
-                                <li>The Morning of The Bank Run</li>
-                                <li>Rollups and Rearview Mirrors</li>
-                                <li>Barlow's Jig</li>
+                                <li class="track-item" data-track="3716911717">
+                                    <div class="track-row"><span class="play-btn">▶</span> Lost</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="2561466004">
+                                    <div class="track-row"><span class="play-btn">▶</span> Hell or High Water</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="169736">
+                                    <div class="track-row"><span class="play-btn">▶</span> Cork Board</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="295449334">
+                                    <div class="track-row"><span class="play-btn">▶</span> Power Underneath</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="2419343800">
+                                    <div class="track-row"><span class="play-btn">▶</span> return(Place)</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="1195393655">
+                                    <div class="track-row"><span class="play-btn">▶</span> Vowel Sounds</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="2925472049">
+                                    <div class="track-row"><span class="play-btn">▶</span> gm☕</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="3930086613">
+                                    <div class="track-row"><span class="play-btn">▶</span> The Morning of The Bank Run</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="3888624559">
+                                    <div class="track-row"><span class="play-btn">▶</span> Rollups and Rearview Mirrors</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="1813577675">
+                                    <div class="track-row"><span class="play-btn">▶</span> Barlow's Jig</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
                             </ol>
                         </div>
                     </div>
@@ -934,7 +1017,7 @@
                 <p>Performances, talks, and behind the scenes</p>
             </div>
             <div class="video-grid">
-                <div class="video-card featured">
+                <div class="video-card">
                     <iframe src="https://www.youtube.com/embed/UqVmvH3Ltd4" title="Justin Holmes Performance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-card">
@@ -942,6 +1025,9 @@
                 </div>
                 <div class="video-card">
                     <iframe src="https://www.youtube.com/embed/YIxg0Qcdf94" title="Justin Holmes Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/yTI1HoFYbE0" title="Justin Holmes Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -1150,6 +1236,31 @@
                 const trackList = this.nextElementSibling;
                 trackList.classList.toggle('active');
                 this.textContent = trackList.classList.contains('active') ? 'Hide Tracks ▲' : 'View Tracks ▼';
+            });
+        });
+
+        // Track player with inline Bandcamp embed
+        document.querySelectorAll('.track-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const trackId = this.dataset.track;
+                const embedContainer = this.querySelector('.bandcamp-embed');
+                const isPlaying = this.classList.contains('playing');
+
+                // Close all other players
+                document.querySelectorAll('.track-item.playing').forEach(other => {
+                    if (other !== this) {
+                        other.classList.remove('playing');
+                        other.querySelector('.bandcamp-embed').innerHTML = '';
+                    }
+                });
+
+                if (isPlaying) {
+                    this.classList.remove('playing');
+                    embedContainer.innerHTML = '';
+                } else {
+                    this.classList.add('playing');
+                    embedContainer.innerHTML = `<iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=${trackId}/size=small/bgcol=f5f3ef/linkcol=4a7c59/transparent=true/autoplay=true/" seamless allow="autoplay"></iframe>`;
+                }
             });
         });
     </script>
