@@ -289,6 +289,47 @@
             font-size: 0.9rem;
         }
 
+        .track-dropdown {
+            margin-top: 15px;
+        }
+
+        .track-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .track-toggle:hover {
+            background: var(--primary-light);
+        }
+
+        .track-list {
+            display: none;
+            text-align: left;
+            margin-top: 15px;
+            padding-left: 25px;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .track-list.active {
+            display: block;
+        }
+
+        .track-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .track-list li:last-child {
+            border-bottom: none;
+        }
+
         /* Video Section */
         .videos {
             background: var(--dark);
@@ -411,6 +452,84 @@
         .offering-card p {
             color: var(--text-light);
             font-size: 0.95rem;
+        }
+
+        .offering-card[data-video] {
+            cursor: pointer;
+        }
+
+        .offering-image {
+            position: relative;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .offering-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+        }
+
+        .video-modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 5px 15px;
+        }
+
+        .video-modal-close:hover {
+            color: var(--accent);
         }
 
         /* Booking Section */
@@ -699,23 +818,26 @@
                 <p>and custom packages for any event</p>
             </div>
             <div class="offerings-grid">
-                <div class="offering-card">
+                <div class="offering-card" data-video="YIxg0Qcdf94" data-title="Justin Holmes & Friends - Dragon Roost">
                     <div class="offering-image">
                         <img src="/images/thumb/c/cf/EthDenver-stage-with-the-boys2.jpg/200px-EthDenver-stage-with-the-boys2.jpg" alt="Live Performance">
+                        <div class="play-overlay">▶</div>
                     </div>
                     <h4>Live Performance</h4>
                     <p>Full band shows with The Immutable String Band, solo acoustic sets, or duo configurations. Bluegrass, old-time, and original music.</p>
                 </div>
-                <div class="offering-card">
+                <div class="offering-card" data-video="UqVmvH3Ltd4" data-title="Zero Knowledge and Time Machines">
                     <div class="offering-image">
                         <img src="images/live-talks.png" alt="Live Talks">
+                        <div class="play-overlay">▶</div>
                     </div>
                     <h4>Live Talks</h4>
                     <p>Keynotes and presentations on blockchain technology, decentralized systems, and the intersection of music and technology.</p>
                 </div>
-                <div class="offering-card">
+                <div class="offering-card" data-video="Y3s9Fu4yu7o" data-title="The Unlikely Shared Origins of Bluegrass and Blockchains">
                     <div class="offering-image">
                         <img src="https://img.youtube.com/vi/Y3s9Fu4yu7o/hqdefault.jpg" alt="Podcasts">
+                        <div class="play-overlay">▶</div>
                     </div>
                     <h4>Podcasts</h4>
                     <p>Guest appearances on podcasts discussing blockchain, music, technology, and the future of decentralized creative economies.</p>
@@ -732,10 +854,25 @@
             </div>
             <div class="music-grid">
                 <div class="album-card">
-                    <img src="/images/thumb/4/43/JustinHolmesSession1_1.1.1.jpg/300px-JustinHolmesSession1_1.1.1.jpg" alt="Vowel Sounds Album">
+                    <img src="images/vowel-sounds-cover.png" alt="Vowel Sounds Album">
                     <div class="album-info">
                         <h4>Vowel Sounds</h4>
                         <p>2024 - Full Album</p>
+                        <div class="track-dropdown">
+                            <button class="track-toggle">View Tracks ▼</button>
+                            <ol class="track-list">
+                                <li>Lost</li>
+                                <li>Hell or High Water (A Policeman and a Fortune Teller)</li>
+                                <li>Cork Board</li>
+                                <li>Power Underneath</li>
+                                <li>return(Place)</li>
+                                <li>Vowel Sounds</li>
+                                <li>gm☕</li>
+                                <li>The Morning of The Bank Run</li>
+                                <li>Rollups and Rearview Mirrors</li>
+                                <li>Barlow's Jig</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
                 <div class="album-card">
@@ -898,6 +1035,14 @@
         </div>
     </section>
 
+    <!-- Video Modal -->
+    <div class="video-modal" id="video-modal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" id="modal-close">&times;</button>
+            <iframe id="modal-video" src="" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -968,6 +1113,44 @@
             } else {
                 nav.style.background = 'rgba(26, 26, 26, 0.95)';
             }
+        });
+
+        // Video Modal
+        const modal = document.getElementById('video-modal');
+        const modalVideo = document.getElementById('modal-video');
+        const modalClose = document.getElementById('modal-close');
+
+        // Open modal when clicking offering cards with video data
+        document.querySelectorAll('.offering-card[data-video]').forEach(card => {
+            card.addEventListener('click', function() {
+                const videoId = this.dataset.video;
+                modalVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                modal.classList.add('active');
+            });
+        });
+
+        // Close modal
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            modalVideo.src = '';
+        }
+
+        // Track list dropdown toggle
+        document.querySelectorAll('.track-toggle').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const trackList = this.nextElementSibling;
+                trackList.classList.toggle('active');
+                this.textContent = trackList.classList.contains('active') ? 'Hide Tracks ▲' : 'View Tracks ▼';
+            });
         });
     </script>
 </body>
