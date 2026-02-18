@@ -337,6 +337,38 @@
             background: white;
         }
 
+        .offering-image {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .offering-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .offering-image img.placeholder {
+            display: none;
+        }
+
+        .offering-image:has(img.placeholder) {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .offering-image:has(img.placeholder)::after {
+            content: "Image coming soon";
+        }
+
         .offerings-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -655,6 +687,38 @@
         </div>
     </section>
 
+    <section id="offerings" class="offerings">
+        <div class="container">
+            <div class="section-title">
+                <h2>Offerings</h2>
+                <p>Live music, talks, and workshops</p>
+            </div>
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <div class="offering-image">
+                        <img src="/images/thumb/c/cf/EthDenver-stage-with-the-boys2.jpg/200px-EthDenver-stage-with-the-boys2.jpg" alt="Live Performance">
+                    </div>
+                    <h4>Live Performance</h4>
+                    <p>Full band shows with The Immutable String Band, solo acoustic sets, or duo configurations. Bluegrass, old-time, and original music.</p>
+                </div>
+                <div class="offering-card">
+                    <div class="offering-image">
+                        <img src="" alt="Live Talks" class="placeholder">
+                    </div>
+                    <h4>Live Talks</h4>
+                    <p>Keynotes and presentations on blockchain technology, decentralized systems, and the intersection of music and technology.</p>
+                </div>
+                <div class="offering-card">
+                    <div class="offering-image">
+                        <img src="" alt="Workshops" class="placeholder">
+                    </div>
+                    <h4>Workshops</h4>
+                    <p>Hands-on sessions covering Tuvan throatsinging, blockchain basics for musicians, or music theory for developers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="music" class="music">
         <div class="container">
             <div class="section-title">
@@ -682,32 +746,6 @@
                         <h4>Session Recordings</h4>
                         <p>Live & Studio Sessions</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="offerings" class="offerings">
-        <div class="container">
-            <div class="section-title">
-                <h2>Offerings</h2>
-                <p>Live music, talks, and workshops</p>
-            </div>
-            <div class="offerings-grid">
-                <div class="offering-card">
-                    <div class="offering-icon">🎸</div>
-                    <h4>Live Performance</h4>
-                    <p>Full band shows with The Immutable String Band, solo acoustic sets, or duo configurations. Bluegrass, old-time, and original music.</p>
-                </div>
-                <div class="offering-card">
-                    <div class="offering-icon">🎤</div>
-                    <h4>Live Talks</h4>
-                    <p>Keynotes and presentations on blockchain technology, decentralized systems, and the intersection of music and technology.</p>
-                </div>
-                <div class="offering-card">
-                    <div class="offering-icon">🎓</div>
-                    <h4>Workshops</h4>
-                    <p>Hands-on sessions covering Tuvan throatsinging, blockchain basics for musicians, or music theory for developers.</p>
                 </div>
             </div>
         </div>
