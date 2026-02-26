@@ -822,6 +822,59 @@
             font-size: 0.9rem;
         }
 
+        /* Booking Images */
+        .booking-images {
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .booking-image {
+            width: 50%;
+            border-radius: 10px;
+            transition: transform 0.3s, filter 0.3s;
+            cursor: pointer;
+        }
+
+        .booking-image:hover {
+            transform: translateY(-10px) scale(1.05);
+            filter: brightness(1.15);
+            z-index: 10;
+        }
+
+        .booking-image-notch {
+            width: 20%;
+            border-radius: 10px;
+            margin-left: -30px;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s, filter 0.3s;
+            cursor: pointer;
+        }
+
+        .booking-image-notch:hover {
+            transform: translateY(-10px) scale(1.1);
+            filter: brightness(1.15);
+            z-index: 10;
+        }
+
+        .booking-image-friend {
+            width: 40%;
+            border-radius: 10px;
+            margin-left: -40px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s, filter 0.3s;
+            cursor: pointer;
+        }
+
+        .booking-image-friend:hover {
+            transform: translateY(-10px) scale(1.05);
+            filter: brightness(1.15);
+            z-index: 10;
+        }
+
         /* Responsive */
         @media (max-width: 968px) {
             .hero .container,
@@ -1114,6 +1167,11 @@
                     </ul>
                     <p><strong>Based in:</strong> St. Petersburg, FL<br>
                     <strong>Touring:</strong> Worldwide</p>
+                    <div class="booking-images">
+                        <img src="images/booking-image.jpg" alt="Justin Holmes" class="booking-image">
+                        <img src="images/notch-cropped.png" alt="Notch" class="booking-image-notch">
+                        <img src="images/friend3.png" alt="Friend" class="booking-image-friend">
+                    </div>
                 </div>
                 <div class="booking-form">
                     <h3>Send an Inquiry</h3>
