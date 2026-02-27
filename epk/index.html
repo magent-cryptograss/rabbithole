@@ -340,6 +340,38 @@
             border-bottom: none;
         }
 
+        .artist-list {
+            padding-left: 0 !important;
+        }
+
+        .artist-entry {
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .artist-entry:last-child {
+            border-bottom: none;
+        }
+
+        .artist-header {
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .artist-stats {
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-top: 3px;
+        }
+
+        .artist-bio {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
         .track-row {
             color: var(--text);
             display: flex;
@@ -864,12 +896,29 @@
             border-radius: 10px;
             margin-left: -40px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
             transition: transform 0.3s, filter 0.3s;
             cursor: pointer;
         }
 
         .booking-image-friend:hover {
+            transform: translateY(-10px) scale(1.05);
+            filter: brightness(1.15);
+            z-index: 10;
+        }
+
+        .booking-image-friend4 {
+            width: 35%;
+            border-radius: 10px;
+            margin-left: -80px;
+            position: relative;
+            top: -100px;
+            z-index: 1;
+            transition: transform 0.3s, filter 0.3s;
+            cursor: pointer;
+        }
+
+        .booking-image-friend4:hover {
             transform: translateY(-10px) scale(1.05);
             filter: brightness(1.15);
             z-index: 10;
@@ -983,7 +1032,6 @@
             <div class="section-title">
                 <h2>Offerings</h2>
                 <p>Live music, talks, podcast features</p>
-                <p>and custom packages for any event</p>
             </div>
             <div class="offerings-grid">
                 <div class="offering-card" data-video="YIxg0Qcdf94" data-title="Justin Holmes & Friends - Dragon Roost">
@@ -1078,13 +1126,119 @@
                     <div class="album-info">
                         <h4>Collaborations</h4>
                         <p>Live & Studio Sessions</p>
+                        <div class="track-dropdown">
+                            <button class="track-toggle">View Artists ▼</button>
+                            <div class="track-list artist-list">
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Jakub Vysoky</strong> (mandolin, vocals, cajon, ukulele)</div>
+                                    <div class="artist-bio">A long-time contributor to several open-source crypto codebases, and serial Ethereum Foundation fixer. Jakub and Justin have been jammin' together since PyCon 2011. At DevConnect Amsterdam in 2022, he agreed to switch to mandolin to pursue bluegrass seriously.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Skyler Golden</strong> (bass, dobro)</div>
+                                    <div class="artist-bio">Involved in production and engineering work, Skyler has also been playing bass and dobro on stage more and more. Met Justin in May 2022 after Andy Lytle introduced them. A near-daily ally in Justin's quest to become musician first, programmer second.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Cory Walker</strong> (5-string banjo)</div>
+                                    <div class="artist-bio">Known from tours with Sierra Hull and The Steeldrivers, as well as work with David Grier. Cory makes truly bizarre sounds come out of the banjo without even using an effects rig. Busy these days with East Nash Grass and sometimes Sierra Ferrell.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Harry Clark</strong> (mandolin, guitar)</div>
+                                    <div class="artist-bio">When putting together the ensemble for Vowel Sounds, Cory Walker was quick and adamant in suggesting his East Nash Grass colleague Harry Clark on mandolin. Known for work with The Wooks and The Dan Tyminski Band.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>David Grier</strong> (guitar)</div>
+                                    <div class="artist-bio">One of the very best acoustic guitarists playing today - a true musicians' musician. Justin lobbied him for over a year to cut a session together. Flatpicking next to him... you feel the steel sharpening steel.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Pepa Lopera</strong> (fiddle)</div>
+                                    <div class="artist-bio">Colombian country sensation. When Justin played two nights at devcon VI in Bogotá, Pepa was the answer when he asked for the best fiddler in town. Known for her epic solo on Nanny State Fiddler and vocals on the Manu Chao cover "Clandestino."</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Jake Stargel</strong> (bass, mandolin, guitar)</div>
+                                    <div class="artist-bio">IBMA Momentum Instrumentalist of the Year (2014), hailed in print as "the next Bryan Sutton." Nashville guitarist-about-town whose studio work includes projects with Rhonda Vincent, John Mailander, Bronwyn Keith-Hynes, and The Wooks. Bryan Sutton has said: "Ever since Jake came on the scene, I've been fascinated and inspired."</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Maddie Denton</strong> (fiddle)</div>
+                                    <div class="artist-bio">Third-generation fiddle player from Murfreesboro, Tennessee. IBMA Fiddle Player of the Year (2024) and 2016 Grand Master Fiddle Champion—the first Tennessee-born contestant to ever win. Seven years with East Nash Grass, who won IBMA New Artist of the Year in 2024.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Gaven Largent</strong> (dobro)</div>
+                                    <div class="artist-bio">Described as a "once in a generation" dobro player. Has performed with Blue Highway, Dailey & Vincent, Michael Cleveland and Flamekeeper, and The Dan Tyminski Band. Started playing dobro at age nine; was invited to perform at the Grand Ole Opry with Rhonda Vincent at age thirteen.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Kyle Tuttle</strong> (5-string banjo)</div>
+                                    <div class="artist-bio">International Banjo Champion shredding his way through the jamgrass scene. Berklee College of Music graduate, former member of the Jeff Austin Band for 3 years, and current banjo player for Molly Tuttle and Golden Highway. Jeff Austin said: "He's one of a kind. If there's a better banjo player, show them to me."</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>John Mailander</strong> (fiddle)</div>
+                                    <div class="artist-bio">Multi-instrumentalist and member of Bruce Hornsby & the Noisemakers. Has toured with Billy Strings, Molly Tuttle, Sierra Hull, and many more. Played fiddle for the premiere of Steve Martin & Edie Brickell's musical Bright Star. Berklee College of Music graduate with a voice on the fiddle influenced by Darol Anger and Vassar Clements.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Kaitlyn Raitz</strong> (cello)</div>
+                                    <div class="artist-bio">Multi-style cellist equally at home with Schubert or a bluegrass jam, Carnegie Hall or the Grand Ole Opry. Co-founder of folk duo Oliver The Crow. Her solo album "Me, Myself, Myself, and I" has amassed over 5 million streams. The Atwood Quartet's work appeared in Season 3 of Netflix's Bridgerton. Currently tours with Eric Church.</div>
+                                </div>
+                                <div class="artist-entry">
+                                    <div class="artist-header"><strong>Sam Grisman</strong> (bass)</div>
+                                    <div class="artist-bio">Son of mandolin icon David "Dawg" Grisman, who grew up with Jerry Garcia as a family friend. Family lore says his first word was "BASS!" Made his recording debut at age eight on the Grammy-nominated album Retrograss. Now leads the Sam Grisman Project, honoring the music of Garcia and his father. Has accompanied Billy Strings, Lee Ann Womack, and many more.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="album-card">
                     <img src="images/4masks-cover.png" alt="4masks Album">
                     <div class="album-info">
                         <h4>4masks</h4>
-                        <p>Coming Soon</p>
+                        <p>2026 - Full Album</p>
+                        <div class="track-dropdown">
+                            <button class="track-toggle">View Tracks ▼</button>
+                            <ol class="track-list">
+                                <li class="track-item" data-track="2752420247">
+                                    <div class="track-row"><span class="play-btn">▶</span> Paint Exchange</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="535305089">
+                                    <div class="track-row"><span class="play-btn">▶</span> Silver .44</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="2198085444">
+                                    <div class="track-row"><span class="play-btn">▶</span> Moon Factory</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="2500983495">
+                                    <div class="track-row"><span class="play-btn">▶</span> Needle and Thread</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="2031075955">
+                                    <div class="track-row"><span class="play-btn">▶</span> Victory</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="1842702533">
+                                    <div class="track-row"><span class="play-btn">▶</span> Cicada Song</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="117060504">
+                                    <div class="track-row"><span class="play-btn">▶</span> August</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="1205518268">
+                                    <div class="track-row"><span class="play-btn">▶</span> Proximity</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="295358735">
+                                    <div class="track-row"><span class="play-btn">▶</span> Drowsy Maggie</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="3711285203">
+                                    <div class="track-row"><span class="play-btn">▶</span> Masks</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                                <li class="track-item" data-track="3763597452">
+                                    <div class="track-row"><span class="play-btn">▶</span> Swords to Ploughshares</div>
+                                    <div class="bandcamp-embed"></div>
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1171,6 +1325,7 @@
                         <img src="images/booking-image.jpg" alt="Justin Holmes" class="booking-image">
                         <img src="images/notch-cropped.png" alt="Notch" class="booking-image-notch">
                         <img src="images/friend3.png" alt="Friend" class="booking-image-friend">
+                        <img src="images/friend4.png" alt="Friend" class="booking-image-friend4">
                     </div>
                 </div>
                 <div class="booking-form">
@@ -1362,7 +1517,12 @@
                 e.stopPropagation();
                 const trackList = this.nextElementSibling;
                 trackList.classList.toggle('active');
-                this.textContent = trackList.classList.contains('active') ? 'Hide Tracks ▲' : 'View Tracks ▼';
+                const isArtists = this.textContent.includes('Artists');
+                if (isArtists) {
+                    this.textContent = trackList.classList.contains('active') ? 'Hide Artists ▲' : 'View Artists ▼';
+                } else {
+                    this.textContent = trackList.classList.contains('active') ? 'Hide Tracks ▲' : 'View Tracks ▼';
+                }
             });
         });
 
