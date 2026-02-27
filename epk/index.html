@@ -982,16 +982,203 @@
             color: #999;
         }
 
+        .globe-layout {
+            display: flex;
+            gap: 0;
+            align-items: flex-start;
+        }
+
         #globe-container {
-            width: 100%;
+            flex: 1;
             height: 500px;
-            margin: 0 auto;
             cursor: grab;
+            min-width: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
 
         #globe-container:active {
             cursor: grabbing;
         }
+
+        .show-info-panel {
+            width: 380px;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px 10px 10px 0;
+            padding: 20px 20px 10px 20px;
+            display: none;
+            position: relative;
+            z-index: 10;
+            margin-left: 0;
+            height: fit-content;
+        }
+
+        .show-info-panel.active {
+            display: block;
+        }
+
+        .show-poster {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .show-info-panel h3 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .show-info-panel .show-venue {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .show-info-panel .show-block {
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .show-info-panel h4 {
+            color: white;
+            font-size: 1rem;
+            margin: 15px 0 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+        }
+
+        .ensemble-list, .setlist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ensemble-list li, .setlist li {
+            color: #ccc;
+            font-size: 0.9rem;
+            padding: 3px 0;
+        }
+
+        .ensemble-list li strong {
+            color: white;
+        }
+
+        .setlist li {
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .setlist li:before {
+            content: "♪";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .show-leaderboard {
+            display: none;
+            gap: 40px;
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .show-leaderboard.active {
+            display: flex;
+        }
+
+        .leaderboard-section {
+            flex: 1;
+        }
+
+        .leaderboard-section h4 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .leaderboard-section .ensemble-list,
+        .leaderboard-section .setlist {
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .leaderboard-section .ensemble-list li,
+        .leaderboard-section .setlist li {
+            break-inside: avoid;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .song-breakdown {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .song-breakdown h5 {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .breakdown-bar {
+            display: flex;
+            height: 24px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .breakdown-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            transition: flex 0.3s;
+        }
+
+        .breakdown-segment.originals { background: var(--primary); }
+        .breakdown-segment.traditionals { background: var(--accent); }
+        .breakdown-segment.covers { background: #6b5b95; }
+        .breakdown-segment.vgm { background: #e74c3c; }
+
+        .breakdown-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.8rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ccc;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.originals { background: var(--primary); }
+        .legend-dot.traditionals { background: var(--accent); }
+        .legend-dot.covers { background: #6b5b95; }
+        .legend-dot.vgm { background: #e74c3c; }
 
         .venue-info {
             text-align: center;
@@ -1040,6 +1227,26 @@
             nav ul {
                 display: none;
             }
+
+            .globe-layout {
+                flex-direction: column;
+            }
+
+            .show-info-panel {
+                width: 100%;
+                margin-top: 20px;
+                margin-left: 0;
+            }
+
+            .show-leaderboard {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .leaderboard-section .ensemble-list,
+            .leaderboard-section .setlist {
+                columns: 1;
+            }
         }
 
         @media (max-width: 600px) {
@@ -1058,6 +1265,10 @@
 
             .stats {
                 flex-wrap: wrap;
+            }
+
+            #globe-container {
+                height: 350px;
             }
         }
     </style>
@@ -1372,7 +1583,26 @@
                 <h2>The Places We've Played</h2>
                 <p>47 shows across 4 continents</p>
             </div>
-            <div id="globe-container"></div>
+            <div class="globe-layout">
+                <div id="globe-container"></div>
+                <div id="show-info-panel" class="show-info-panel">
+                    <img id="show-poster" class="show-poster" src="" alt="Show poster" style="display: none;">
+                    <h3 id="show-title"></h3>
+                    <div id="show-venue" class="show-venue"></div>
+                    <div id="show-block" class="show-block"></div>
+                </div>
+            </div>
+            <div id="show-leaderboard" class="show-leaderboard">
+                <div class="leaderboard-section">
+                    <h4>Ensemble</h4>
+                    <ul id="show-ensemble" class="ensemble-list"></ul>
+                    <div id="song-breakdown" class="song-breakdown"></div>
+                </div>
+                <div class="leaderboard-section">
+                    <h4>Setlist</h4>
+                    <ul id="show-setlist" class="setlist"></ul>
+                </div>
+            </div>
             <div id="venue-info" class="venue-info"></div>
         </div>
     </section>
@@ -1675,75 +1905,288 @@
     <!-- Globe.gl for interactive globe -->
     <script src="https://unpkg.com/globe.gl"></script>
     <script>
-        // Venue data with coordinates
-        const venues = [
-            // Spain - Barcelona
-            { lat: 41.3851, lng: 2.1734, title: "Hello Decentralization", venue: "Barcelona", city: "Barcelona, Spain", shows: 1 },
-            { lat: 41.3874, lng: 2.1686, title: "EthBarcelona", venue: "Centre Convencions / BIG C", city: "Barcelona, Spain", shows: 3 },
-
-            // Netherlands - Amsterdam
-            { lat: 52.3676, lng: 4.9041, title: "ETH Amsterdam Events", venue: "Various Venues", city: "Amsterdam, Netherlands", shows: 4 },
-
-            // Germany - Berlin
-            { lat: 52.5200, lng: 13.4050, title: "Berlin Shows", venue: "Full Node / Funkhaus / MOOS", city: "Berlin, Germany", shows: 5 },
-
-            // Colombia - Bogotá
-            { lat: 4.7110, lng: -74.0721, title: "devcon VI", venue: "Chiva Lounge", city: "Bogotá, Colombia", shows: 2 },
-
-            // USA - Denver/Colorado
-            { lat: 39.7392, lng: -104.9903, title: "Denver Shows", venue: "Various Venues", city: "Denver, Colorado", shows: 5 },
-            { lat: 40.0150, lng: -105.2705, title: "GFEL Boulder 2025", venue: "The Riverside", city: "Boulder, Colorado", shows: 1 },
-            { lat: 39.4817, lng: -106.0384, title: "GRASSBurn Zero", venue: "Crucible", city: "Breckenridge, Colorado", shows: 1 },
-
-            // Czech Republic
-            { lat: 50.0755, lng: 14.4378, title: "Prague Shows", venue: "La Fabrika / Klub Betlémská / Burza #4", city: "Prague, Czech Republic", shows: 4 },
-            { lat: 50.4251, lng: 14.2618, title: "Roudnice Shows", venue: "Various Venues", city: "Roudnice nad Labem, Czech Republic", shows: 4 },
-            { lat: 49.5938, lng: 17.2509, title: "Variace Olomouc", venue: "Variace", city: "Olomouc, Czech Republic", shows: 1 },
-            { lat: 50.2286, lng: 17.2039, title: "Vinckovo", venue: "Vinckovo", city: "Jesenik, Czech Republic", shows: 1 },
-            { lat: 50.3992, lng: 14.2050, title: "Festival MY 2023", venue: "Farmě v Krabčicích", city: "Krabčicích, Czech Republic", shows: 1 },
-
-            // Belgium - Brussels
-            { lat: 50.8503, lng: 4.3517, title: "Brussels Shows", venue: "Commons Hub / Doubletree / Aquaponic Farm", city: "Brussels, Belgium", shows: 4 },
-
-            // France - Paris
-            { lat: 48.8566, lng: 2.3522, title: "Gitcoin House Paris", venue: "Gitcoin House", city: "Paris, France", shows: 1 },
-
-            // USA - Other
-            { lat: 36.1627, lng: -86.7816, title: "Justin Holmes + David Grier", venue: "Tunesmith Studios", city: "Nashville, Tennessee", shows: 1 },
-            { lat: 45.5152, lng: -122.6784, title: "Global Forum on Ethereum Localism", venue: "Bridgespace", city: "Portland, Oregon", shows: 1 },
-            { lat: 44.4881, lng: -71.5698, title: "Porcupine Festival", venue: "North Country Camp", city: "Lancaster, New Hampshire", shows: 2 },
-            { lat: 40.6782, lng: -73.9442, title: "EthNY 2019", venue: "Brooklyn Navy Yard", city: "Brooklyn, New York", shows: 1 },
-
-            // South Africa
-            { lat: -33.9249, lng: 18.4241, title: "EthCapetown 2019", venue: "Cape Town", city: "Cape Town, South Africa", shows: 1 },
-
-            // Japan
-            { lat: 34.6937, lng: 135.5023, title: "devconV", venue: "Osaka", city: "Osaka, Japan", shows: 1 }
+        // Comprehensive show data with posters, ensembles, and setlists
+        const shows = [
+            // Shows WITH posters
+            {
+                lat: 40.0150, lng: -105.2705,
+                title: "GFEL Boulder 2025",
+                venue: "The Riverside",
+                city: "Boulder, Colorado",
+                block: 21904604,
+                poster: "https://cryptograss.live/assets/images/posters/GFELRC4.png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar", "melodica", "six-whistle"] },
+                    { name: "Skyler Golden", instruments: ["dobro"] },
+                    { name: "Kyle Bestape", instruments: ["mandolin"] },
+                    { name: "Laura Quam", instruments: ["fiddle"] },
+                    { name: "Jake Stargel", instruments: ["bass"] }
+                ],
+                setlist: ["Red Haired Boy", "Nanny State Fiddler", "Dragon Roost Island", "Vowel Sounds", "Bubak and Hungaricus", "Loser"]
+            },
+            {
+                lat: 39.7392, lng: -104.9903,
+                title: "Schelling Point",
+                venue: "Number 38",
+                city: "Denver, Colorado",
+                block: 21940657,
+                poster: "https://cryptograss.live/assets/images/posters/SCHELLINGPOINTRC4.png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar"] },
+                    { name: "Skyler Golden", instruments: ["bass"] },
+                    { name: "Laura Quam", instruments: ["fiddle"] },
+                    { name: "Chris Elliott", instruments: ["banjo"] },
+                    { name: "Jake Stargel", instruments: ["mandolin"] }
+                ],
+                setlist: ["Rueben's Train", "Garfield's Blackberry Blossom", "From Bill to Brewster", "Terrapin Station", "Nanny State Fiddler"]
+            },
+            {
+                lat: 39.4817, lng: -106.0384,
+                title: "GRASSBurn Zero",
+                venue: "Crucible",
+                city: "Breckenridge, Colorado",
+                block: 21984926,
+                poster: "https://cryptograss.live/assets/images/posters/GRASSBURNIRLRC1.png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar"] },
+                    { name: "Skyler Golden", instruments: ["bass"] },
+                    { name: "Chris Elliott", instruments: ["banjo"] },
+                    { name: "Jake Stargel", instruments: ["mandolin"] }
+                ],
+                setlist: ["Red Haired Boy", "The Morning of the Bank Run", "Lost", "The Two Sisters", "Power Underneath", "Salt Creek", "Shady Grove", "Silver .44", "Song of Storms", "Loser", "Hell or High Water"]
+            },
+            {
+                lat: 39.7500, lng: -105.0000,
+                title: "Allo DAO Summoning",
+                venue: "Gitcoin Church",
+                city: "Denver, Colorado",
+                block: 21933658,
+                poster: "https://cryptograss.live/assets/images/posters/ALLODAORC5.png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar", "mandolin"] },
+                    { name: "Skyler Golden", instruments: ["bass"] },
+                    { name: "Laura Quam", instruments: ["banjo"] },
+                    { name: "Chris Elliott", instruments: ["bass"] },
+                    { name: "Jake Stargel", instruments: ["guitar", "bass"] }
+                ],
+                setlist: ["Hell or High Water", "Clinch Mountain Backstep", "Shady Grove", "Drowsy Maggie", "Paint Exchange", "All the Tired Horses", "Song of Storms", "Salt Creek"]
+            },
+            {
+                lat: 52.3676, lng: 4.9041,
+                title: "ETHDam 2025",
+                venue: "Pakhuis de Zwijger",
+                city: "Amsterdam, Netherlands",
+                block: 22447747,
+                poster: "https://cryptograss.live/assets/images/posters/RC%202%20ETHDam%20tour%20poster%202025(1).png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
+                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
+                    { name: "Skyler Golden", instruments: ["bass"] },
+                    { name: "Bones", instruments: ["banjo"] },
+                    { name: "Seamus", instruments: ["fiddle"] },
+                    { name: "Joshua", instruments: ["cello"] }
+                ],
+                setlist: ["Silver .44", "Paint Exchange", "Lost", "Red Haired Boy", "Drowsy Maggie", "Little Maggie", "Shady Grove", "The Two Sisters", "Nanny State Fiddler"]
+            },
+            {
+                lat: 44.4881, lng: -71.5698,
+                title: "Porcupine Festival 2025",
+                venue: "North Country Camp",
+                city: "Lancaster, New Hampshire",
+                block: 22748946,
+                poster: "https://cryptograss.live/assets/images/posters/porcupine2025-poster.png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
+                    { name: "Skyler Golden", instruments: ["bass"] }
+                ],
+                setlist: ["Hell or High Water", "Rueben's Train", "Red Haired Boy", "Drowsy Maggie", "Little Maggie", "Song of Storms", "Power Underneath", "The Morning of The Bank Run", "Shady Grove", "Salt Creek", "Loser", "Vowel Sounds", "Proximity"]
+            },
+            {
+                lat: 52.5200, lng: 13.4050,
+                title: "web3summit 2024",
+                venue: "Funkhaus Berlin",
+                city: "Berlin, Germany",
+                block: 20570887,
+                poster: "https://cryptograss.live/assets/images/posters/web3summit-2024.png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
+                    { name: "Skyler Golden", instruments: ["bass"] },
+                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
+                    { name: "Kuba Hejhal", instruments: ["fiddle"] }
+                ],
+                setlist: ["August", "Last Train From Poor Valley", "Salt Creek", "The Two Sisters", "Victory", "Swords to Ploughshares", "Man of Constant Sorrow", "Nanny State Fiddler", "Lost", "Rueben's Train", "Rollups and Rearview Mirrors"]
+            },
+            {
+                lat: 52.5100, lng: 13.4200,
+                title: "MOOS Space 2024",
+                venue: "MOOS Space",
+                city: "Berlin, Germany",
+                block: 20550008,
+                poster: "https://cryptograss.live/assets/images/posters/moos-space-2024.png",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
+                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
+                    { name: "Kuba Hejhal", instruments: ["fiddle"] }
+                ],
+                setlist: ["Hell or High Water", "Song of Storms", "Red Haired Boy", "Silver .44", "The Goy's Teeth", "Manzanita", "O Death", "Loser", "Paint Exchange", "Drowsy Maggie", "Dragon Roost Island"]
+            },
+            {
+                lat: 50.8503, lng: 4.3517,
+                title: "Regens Unite 2024",
+                venue: "Commons Hub Brussels",
+                city: "Brussels, Belgium",
+                block: 20277935,
+                poster: "https://cryptograss.live/assets/images/posters/regens-brussels-2024.jpeg",
+                ensemble: [
+                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
+                    { name: "Skyler Golden", instruments: ["bass"] },
+                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
+                    { name: "Kuba Hejhal", instruments: ["fiddle"] }
+                ],
+                setlist: ["Paint Exchange", "Hell or High Water", "Salt Creek", "Cicada Song", "Lost", "Loser", "Song of Storms", "Power Underneath", "The Morning of The Bank Run", "Silver .44", "Nanny State Fiddler"]
+            },
+            // Shows WITHOUT posters
+            { lat: 41.3851, lng: 2.1734, title: "Hello Decentralization", venue: "Barcelona", city: "Barcelona, Spain", block: 11908068 },
+            { lat: 41.3874, lng: 2.1686, title: "EthBarcelona 2022", venue: "Centre Convencions", city: "Barcelona, Spain", block: 15232479 },
+            { lat: 41.3880, lng: 2.1690, title: "EthBarcelona 2023", venue: "BIG C", city: "Barcelona, Spain", block: 17642973 },
+            { lat: 52.3680, lng: 4.9045, title: "Zero Knowledge Summit 7", venue: "Amsterdam", city: "Amsterdam, Netherlands", block: 14628177 },
+            { lat: 52.3670, lng: 4.9035, title: "devconnect 2022", venue: "Amsterdam", city: "Amsterdam, Netherlands", block: 14655789 },
+            { lat: 52.5205, lng: 13.4055, title: "Zero Knowledge Summit 8", venue: "Berlin", city: "Berlin, Germany", block: 15539549 },
+            { lat: 52.5195, lng: 13.4045, title: "re:generate / The Merge", venue: "Full Node", city: "Berlin, Germany", block: 15540733 },
+            { lat: 4.7110, lng: -74.0721, title: "devcon VI night 1", venue: "Chiva Lounge", city: "Bogotá, Colombia", block: 15735471 },
+            { lat: 4.7115, lng: -74.0725, title: "devcon VI night 2", venue: "Chiva Lounge", city: "Bogotá, Colombia", block: 15742928 },
+            { lat: 50.0755, lng: 14.4378, title: "EthPrague 2023", venue: "La Fabrika", city: "Prague, Czech Republic", block: 17451407 },
+            { lat: 50.0760, lng: 14.4380, title: "ETHPrague 2025", venue: "Burza #4 / Bike Jesus", city: "Prague, Czech Republic", block: 22575700 },
+            { lat: 50.4251, lng: 14.2618, title: "Kuba Hejhal Memorial", venue: "Koruna", city: "Roudnice nad Labem, Czech Republic", block: 22504683 },
+            { lat: 36.1627, lng: -86.7816, title: "Justin Holmes + David Grier", venue: "Tunesmith Studios", city: "Nashville, Tennessee", block: 19569155 },
+            { lat: 45.5152, lng: -122.6784, title: "GFEL 2023", venue: "Bridgespace", city: "Portland, Oregon", block: 18344309 },
+            { lat: 40.6782, lng: -73.9442, title: "EthNY 2019", venue: "Brooklyn Navy Yard", city: "Brooklyn, New York", block: 7729184 },
+            { lat: -33.9249, lng: 18.4241, title: "EthCapetown 2019", venue: "Cape Town", city: "Cape Town, South Africa", block: 7624763 },
+            { lat: 34.6937, lng: 135.5023, title: "devconV", venue: "Osaka", city: "Osaka, Japan", block: 8717612 },
+            { lat: 48.8566, lng: 2.3522, title: "Gitcoin House Paris", venue: "Gitcoin House", city: "Paris, France", block: 17728577 }
         ];
 
         // Initialize globe
         const globeContainer = document.getElementById('globe-container');
         const venueInfo = document.getElementById('venue-info');
+        const showInfoPanel = document.getElementById('show-info-panel');
+        const showPoster = document.getElementById('show-poster');
+        const showTitle = document.getElementById('show-title');
+        const showVenue = document.getElementById('show-venue');
+        const showBlock = document.getElementById('show-block');
+        const showEnsemble = document.getElementById('show-ensemble');
+        const showSetlist = document.getElementById('show-setlist');
+        const showLeaderboard = document.getElementById('show-leaderboard');
+        const songBreakdown = document.getElementById('song-breakdown');
+
+        // Song categorization
+        const traditionals = ["Angel Band", "Back Up and Push", "Bubak and Hungaricus", "Can the Circle Be Unbroken", "Clinch Mountain Backstep", "Drowsy Maggie", "Garfield's Blackberry Blossom", "Hard Time Killing Floor Blues", "I Know You Rider", "Kesh Jig", "Little Maggie", "Man of Constant Sorrow", "Morrison's Jig", "O Death", "Old Joe Clark", "Red Haired Boy", "Rueben's Train", "Salt Creek", "Shady Grove", "The Two Sisters", "Tom Dooley", "Manzanita", "Seven Bridges Road", "All the Tired Horses"];
+        const vgm = ["Song of Storms", "Dragon Roost Island", "Victory", "Millennial Fair", "Song of Time", "Terrapin Station"];
+        const covers = ["Loser", "Dire Wolf", "The Frog", "Mercedes Benz", "Clandestino", "You and Whose Army"];
+
+        function categorizeSong(song) {
+            const cleanName = song.replace(/:.*$/, '').trim();
+            if (traditionals.some(t => cleanName.toLowerCase().includes(t.toLowerCase()))) return 'traditionals';
+            if (vgm.some(v => cleanName.toLowerCase().includes(v.toLowerCase()))) return 'vgm';
+            if (covers.some(c => cleanName.toLowerCase().includes(c.toLowerCase()))) return 'covers';
+            return 'originals';
+        }
+
+        function displayBreakdown(setlist) {
+            if (!setlist || setlist.length === 0) {
+                songBreakdown.innerHTML = '';
+                return;
+            }
+
+            const counts = { originals: 0, traditionals: 0, covers: 0, vgm: 0 };
+            setlist.forEach(song => {
+                counts[categorizeSong(song)]++;
+            });
+
+            const total = setlist.length;
+            const segments = [];
+            const legendItems = [];
+
+            if (counts.originals > 0) {
+                segments.push(`<div class="breakdown-segment originals" style="flex: ${counts.originals}">${counts.originals}</div>`);
+                legendItems.push(`<div class="legend-item"><span class="legend-dot originals"></span>Originals (${counts.originals})</div>`);
+            }
+            if (counts.traditionals > 0) {
+                segments.push(`<div class="breakdown-segment traditionals" style="flex: ${counts.traditionals}">${counts.traditionals}</div>`);
+                legendItems.push(`<div class="legend-item"><span class="legend-dot traditionals"></span>Traditional (${counts.traditionals})</div>`);
+            }
+            if (counts.vgm > 0) {
+                segments.push(`<div class="breakdown-segment vgm" style="flex: ${counts.vgm}">${counts.vgm}</div>`);
+                legendItems.push(`<div class="legend-item"><span class="legend-dot vgm"></span>Video Game (${counts.vgm})</div>`);
+            }
+            if (counts.covers > 0) {
+                segments.push(`<div class="breakdown-segment covers" style="flex: ${counts.covers}">${counts.covers}</div>`);
+                legendItems.push(`<div class="legend-item"><span class="legend-dot covers"></span>Covers (${counts.covers})</div>`);
+            }
+
+            songBreakdown.innerHTML = `
+                <h5>Song Breakdown</h5>
+                <div class="breakdown-bar">${segments.join('')}</div>
+                <div class="breakdown-legend">${legendItems.join('')}</div>
+            `;
+        }
+
+        function displayShowInfo(show) {
+            // Show the panel
+            showInfoPanel.classList.add('active');
+
+            // Set poster
+            if (show.poster) {
+                showPoster.src = show.poster;
+                showPoster.style.display = 'block';
+            } else {
+                showPoster.style.display = 'none';
+            }
+
+            // Set title and venue
+            showTitle.textContent = show.title;
+            showVenue.textContent = `${show.venue} • ${show.city}`;
+            showBlock.textContent = show.block ? `Block ${show.block.toLocaleString()}` : '';
+
+            // Set ensemble
+            if (show.ensemble && show.ensemble.length > 0) {
+                showEnsemble.innerHTML = show.ensemble.map(m =>
+                    `<li><strong>${m.name}</strong> - ${m.instruments.join(', ')}</li>`
+                ).join('');
+            } else {
+                showEnsemble.innerHTML = '<li style="color: #666;">No ensemble data</li>';
+            }
+
+            // Set setlist
+            if (show.setlist && show.setlist.length > 0) {
+                showSetlist.innerHTML = show.setlist.map(s => `<li>${s}</li>`).join('');
+                displayBreakdown(show.setlist);
+            } else {
+                showSetlist.innerHTML = '<li style="color: #666;">No setlist data</li>';
+                displayBreakdown([]);
+            }
+
+            // Show leaderboard if we have ensemble or setlist data
+            if ((show.ensemble && show.ensemble.length > 0) || (show.setlist && show.setlist.length > 0)) {
+                showLeaderboard.classList.add('active');
+            } else {
+                showLeaderboard.classList.remove('active');
+            }
+        }
 
         if (globeContainer) {
             const globe = Globe()
                 .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
                 .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
-                .pointsData(venues)
+                .pointsData(shows)
                 .pointLat('lat')
                 .pointLng('lng')
-                .pointColor(() => '#d4a574')
-                .pointAltitude(0.06)
-                .pointRadius(0.5)
+                .pointColor(d => d.poster ? '#d4a574' : '#888888')
+                .pointAltitude(d => d.poster ? 0.08 : 0.04)
+                .pointRadius(d => d.poster ? 0.6 : 0.4)
                 .pointLabel(d => `<div style="text-align: center; padding: 5px;"><b>${d.title}</b><br/>${d.city}</div>`)
                 .onPointClick(d => {
-                    venueInfo.innerHTML = `
-                        <h4>${d.title}</h4>
-                        <p><strong>Venue:</strong> ${d.venue}</p>
-                        <p><strong>Location:</strong> ${d.city}</p>
-                        <p><strong>Shows:</strong> ${d.shows}</p>
-                    `;
-                    // Rotate to the clicked point
+                    displayShowInfo(d);
                     globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.5 }, 1000);
                 })
                 .width(globeContainer.offsetWidth)
