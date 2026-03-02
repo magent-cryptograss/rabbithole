@@ -372,6 +372,12 @@
             font-style: italic;
         }
 
+        .artist-songs {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
         .track-row {
             color: var(--text);
             display: flex;
@@ -1079,6 +1085,15 @@
             color: var(--accent);
         }
 
+        .setlist li.song-originals { color: var(--primary); }
+        .setlist li.song-originals:before { color: var(--primary); }
+        .setlist li.song-traditionals { color: var(--accent); }
+        .setlist li.song-traditionals:before { color: var(--accent); }
+        .setlist li.song-covers { color: #6b5b95; }
+        .setlist li.song-covers:before { color: #6b5b95; }
+        .setlist li.song-vgm { color: #e74c3c; }
+        .setlist li.song-vgm:before { color: #e74c3c; }
+
         .show-leaderboard {
             display: none;
             gap: 40px;
@@ -1423,62 +1438,49 @@
                 <div class="album-card">
                     <img src="images/collaborations.jpg" alt="Collaborations">
                     <div class="album-info">
-                        <h4>Collaborations</h4>
+                        <h4>Recent Collaborations</h4>
                         <p>Live & Studio Sessions</p>
                         <div class="track-dropdown">
                             <button class="track-toggle">View Artists ▼</button>
                             <div class="track-list artist-list">
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Jakub Vysoky</strong> (mandolin, vocals, cajon, ukulele)</div>
-                                    <div class="artist-bio">A long-time contributor to several open-source crypto codebases, and serial Ethereum Foundation fixer. Jakub and Justin have been jammin' together since PyCon 2011. At DevConnect Amsterdam in 2022, he agreed to switch to mandolin to pursue bluegrass seriously.</div>
+                                    <div class="artist-header"><strong>Jakub Vysoky</strong> — mandolin, vocals, cajon, ukulele</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Skyler Golden</strong> (bass, dobro)</div>
-                                    <div class="artist-bio">Involved in production and engineering work, Skyler has also been playing bass and dobro on stage more and more. Met Justin in May 2022 after Andy Lytle introduced them. A near-daily ally in Justin's quest to become musician first, programmer second.</div>
+                                    <div class="artist-header"><strong>Skyler Golden</strong> — bass, dobro</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Kuba Hejhal</strong> (fiddle) <em style="color: var(--accent);">1997–2024</em></div>
-                                    <div class="artist-bio">Kuba was the heart and soul of so many European shows - Prague, Barcelona, Berlin, Brussels. He brought an energy that lifted every room. We still play "The Two Sisters" and "Dragon Roost Island" in his memory. Gone far too soon, but forever part of this music.</div>
+                                    <div class="artist-header"><strong>Kuba Hejhal</strong> — fiddle <em style="color: var(--accent);">1997–2024</em></div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Cory Walker</strong> (5-string banjo)</div>
-                                    <div class="artist-bio">Known from tours with Sierra Hull and The Steeldrivers, as well as work with David Grier. Cory makes truly bizarre sounds come out of the banjo without even using an effects rig. Busy these days with East Nash Grass and sometimes Sierra Ferrell.</div>
+                                    <div class="artist-header"><strong>Cory Walker</strong> — 5-string banjo</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Harry Clark</strong> (mandolin, guitar)</div>
-                                    <div class="artist-bio">When putting together the ensemble for Vowel Sounds, Cory Walker was quick and adamant in suggesting his East Nash Grass colleague Harry Clark on mandolin. Known for work with The Wooks and The Dan Tyminski Band.</div>
+                                    <div class="artist-header"><strong>Harry Clark</strong> — mandolin, guitar</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>David Grier</strong> (guitar)</div>
-                                    <div class="artist-bio">One of the very best acoustic guitarists playing today - a true musicians' musician. Flatpicking next to him... you feel the steel sharpening steel.</div>
+                                    <div class="artist-header"><strong>David Grier</strong> — guitar</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Pepa Lopera</strong> (fiddle)</div>
-                                    <div class="artist-bio">Colombian country sensation. When Justin played two nights at devcon VI in Bogotá, Pepa was the answer when he asked for the best fiddler in town. Known for her epic solo on Nanny State Fiddler and vocals on the Manu Chao cover "Clandestino."</div>
+                                    <div class="artist-header"><strong>Pepa Lopera</strong> — fiddle</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Jake Stargel</strong> (bass, mandolin, guitar)</div>
-                                    <div class="artist-bio">IBMA Momentum Instrumentalist of the Year (2014). Nashville guitarist-about-town whose studio work includes projects with Rhonda Vincent, John Mailander, Bronwyn Keith-Hynes, and The Wooks. Bryan Sutton has said: "Ever since Jake came on the scene, I've been fascinated and inspired." Has recorded and produced Vowel Sounds (2024) and 4Masks (2026).</div>
+                                    <div class="artist-header"><strong>Jake Stargel</strong> — bass, mandolin, guitar</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Maddie Denton</strong> (fiddle)</div>
-                                    <div class="artist-bio">Third-generation fiddle player from Murfreesboro, Tennessee. IBMA Fiddle Player of the Year (2024) and 2016 Grand Master Fiddle Champion—the first Tennessee-born contestant to ever win. Plays fiddle on five 4masks tracks: "August," "Cicada Song," "Victory," "Silver .44," and "Swords to Ploughshares."</div>
+                                    <div class="artist-header"><strong>Maddie Denton</strong> — fiddle</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Gaven Largent</strong> (dobro)</div>
-                                    <div class="artist-bio">Described as a "once in a generation" dobro player. Has performed with Blue Highway, Dailey & Vincent, Michael Cleveland and Flamekeeper, and The Dan Tyminski Band. Plays dobro on the 4masks tracks "August," "Cicada Song," and "Swords to Ploughshares."</div>
+                                    <div class="artist-header"><strong>Gaven Largent</strong> — dobro</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Kyle Tuttle</strong> (5-string banjo)</div>
-                                    <div class="artist-bio">International Banjo Champion and current banjo player for Molly Tuttle and Golden Highway. Berklee College of Music graduate and former member of the Jeff Austin Band. Plays banjo on the 4masks tracks "August," "Victory," and "Silver .44." Jeff Austin said: "He's one of a kind. If there's a better banjo player, show them to me."</div>
+                                    <div class="artist-header"><strong>Kyle Tuttle</strong> — 5-string banjo</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>John Mailander</strong> (fiddle)</div>
-                                    <div class="artist-bio">Multi-instrumentalist and member of Bruce Hornsby & the Noisemakers. Has toured with Billy Strings, Molly Tuttle, Sierra Hull, and many more. Plays fiddle on the 4masks track "Paint Exchange," delivering standout solos throughout the piece.</div>
+                                    <div class="artist-header"><strong>John Mailander</strong> — fiddle</div>
                                 </div>
                                 <div class="artist-entry">
-                                    <div class="artist-header"><strong>Sam Grisman</strong> (bass)</div>
-                                    <div class="artist-bio">Sam is currently playing with his band Sam Grisman Project and collaborating with many different groups across the country - he's getting ready for a 2026 packed full of shows and music! Plays bass on "Paint Exchange" and "Moon Factory."</div>
+                                    <div class="artist-header"><strong>Sam Grisman</strong> — bass</div>
                                 </div>
                             </div>
                         </div>
@@ -1559,20 +1561,6 @@
                     <p>Justin Holmes is probably best known in bluegrass circles as "that throatsinging dude/guy." He plays guitar, mandolin, melodica, and tin whistle in his touring, rotating bluegrass band, The Immutable String Band.</p>
                     <p>With thousands of published contributions to open source cryptography and web codebases, Justin was until recently better known as a software engineer than a musician. His music blends bluegrass, old-time, and traditional music from around the world, with lyrics about cryptography, privacy, artificial intelligence, and the evolution of the internet.</p>
                     <p>Justin has been learning and practicing Tuvan Throatsinging and other overtone singing styles since 2004, and holds a brown belt in isshinryu karate.</p>
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Live Shows</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">1000s</div>
-                            <div class="stat-label">Code Commits</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">Years Touring</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1634,7 +1622,7 @@
     <section id="booking" class="booking">
         <div class="container">
             <div class="section-title">
-                <h2>Book Justin</h2>
+                <h2>Contact Justin</h2>
                 <p>For performances, talks, and appearances</p>
             </div>
             <div class="booking-grid">
@@ -1646,7 +1634,7 @@
                         <li><span>Solo/Duo Acoustic</span><span>Intimate settings</span></li>
                         <li><span>Live Talk</span><span>30-60 minutes</span></li>
                         <li><span>Podcast</span><span>30-90 minutes</span></li>
-                        <li><span>Private Event</span><span>Custom packages</span></li>
+                        <li><span>Private Event</span><span>let's talk</span></li>
                     </ul>
                     <p><strong>Based in:</strong> St. Petersburg, FL<br>
                     <strong>Touring:</strong> BONAFIDE</p>
@@ -1769,6 +1757,7 @@
                     <ul>
                         <li><a href="#about">About</a></li>
                         <li><a href="#music">Music</a></li>
+                        <li><a href="#places">Places</a></li>
                         <li><a href="#videos">Videos</a></li>
                         <li><a href="#booking">Contact</a></li>
                     </ul>
@@ -2160,7 +2149,7 @@
 
             // Set setlist
             if (show.setlist && show.setlist.length > 0) {
-                showSetlist.innerHTML = show.setlist.map(s => `<li>${s}</li>`).join('');
+                showSetlist.innerHTML = show.setlist.map(s => `<li class="song-${categorizeSong(s)}">${s}</li>`).join('');
                 displayBreakdown(show.setlist);
             } else {
                 showSetlist.innerHTML = '<li style="color: #666;">No setlist data</li>';
@@ -2176,20 +2165,35 @@
         }
 
         if (globeContainer) {
+            // Create pin marker element
+            const createPinElement = (d) => {
+                const el = document.createElement('div');
+                el.innerHTML = `
+                    <svg width="24" height="36" viewBox="0 0 24 36" style="cursor: pointer; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.4));">
+                        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12z" fill="${d.poster ? '#d4a574' : '#888888'}"/>
+                        <circle cx="12" cy="12" r="5" fill="${d.poster ? '#1a1a1a' : '#555555'}"/>
+                    </svg>
+                `;
+                el.style.pointerEvents = 'auto';
+                el.style.cursor = 'pointer';
+                return el;
+            };
+
             const globe = Globe()
                 .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
                 .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
-                .pointsData(shows)
-                .pointLat('lat')
-                .pointLng('lng')
-                .pointColor(d => d.poster ? '#d4a574' : '#888888')
-                .pointAltitude(d => d.poster ? 0.08 : 0.04)
-                .pointRadius(d => d.poster ? 0.6 : 0.4)
-                .pointLabel(d => `<div style="text-align: center; padding: 5px;"><b>${d.title}</b><br/>${d.city}</div>`)
-                .onPointClick(d => {
-                    displayShowInfo(d);
-                    globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.5 }, 1000);
+                .htmlElementsData(shows)
+                .htmlLat('lat')
+                .htmlLng('lng')
+                .htmlElement(d => {
+                    const el = createPinElement(d);
+                    el.onclick = () => {
+                        displayShowInfo(d);
+                        globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.2 }, 1000);
+                    };
+                    return el;
                 })
+                .htmlAltitude(0.01)
                 .width(globeContainer.offsetWidth)
                 .height(500)
                 (globeContainer);
@@ -2197,6 +2201,9 @@
             // Auto-rotate
             globe.controls().autoRotate = true;
             globe.controls().autoRotateSpeed = 0.5;
+
+            // Disable zoom
+            globe.controls().enableZoom = false;
 
             // Stop rotation on interaction
             globeContainer.addEventListener('mousedown', () => {
@@ -2208,8 +2215,8 @@
                 globe.width(globeContainer.offsetWidth);
             });
 
-            // Set initial view
-            globe.pointOfView({ lat: 30, lng: 0, altitude: 2.5 });
+            // Set initial view - zoomed in closer
+            globe.pointOfView({ lat: 30, lng: 0, altitude: 1.4 });
         }
     </script>
 </body>
