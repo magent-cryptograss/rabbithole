@@ -133,10 +133,23 @@
         }
 
         .hero-content .tagline {
-            font-size: 1.5rem;
+            font-size: 2.2rem;
             color: var(--accent);
-            margin-bottom: 30px;
-            font-weight: 300;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero-content .instrument-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .pixel-instrument {
+            color: var(--accent);
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
 
         .hero-content p {
@@ -1085,14 +1098,20 @@
             color: var(--accent);
         }
 
-        .setlist li.song-originals { color: var(--primary); }
-        .setlist li.song-originals:before { color: var(--primary); }
-        .setlist li.song-traditionals { color: var(--accent); }
-        .setlist li.song-traditionals:before { color: var(--accent); }
-        .setlist li.song-covers { color: #6b5b95; }
-        .setlist li.song-covers:before { color: #6b5b95; }
-        .setlist li.song-vgm { color: #e74c3c; }
-        .setlist li.song-vgm:before { color: #e74c3c; }
+        .setlist li[class^="song-"] {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-weight: 500;
+        }
+        .setlist li.song-originals { color: #6ab04c; }
+        .setlist li.song-originals:before { color: #6ab04c; }
+        .setlist li.song-traditionals { color: #f0c674; }
+        .setlist li.song-traditionals:before { color: #f0c674; }
+        .setlist li.song-covers { color: #a29bfe; }
+        .setlist li.song-covers:before { color: #a29bfe; }
+        .setlist li.song-vgm { color: #ff7675; }
+        .setlist li.song-vgm:before { color: #ff7675; }
 
         .show-leaderboard {
             display: none;
@@ -1307,8 +1326,8 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Justin Holmes</h1>
-                <p class="tagline">Bluegrass. Blockchain. Lembas.</p>
-                <p>Musician, software engineer, and blockchain innovator bridging traditional music with cutting-edge technology. Founder of Cryptograss, PickiPedia, and The Immutable String Band.</p>
+                <p style="color: #d4a574; font-weight: 700; margin-bottom: 0.5rem;">Self-Proclaimed Bronze Medal Winner, 2026 Fort Stockton, TX - Hackabilly Bluegrass Competition</p>
+                <p>Founder of Cryptograss, PickiPedia, and The Immutable String Band.</p>
                 <a href="#booking" class="btn">Contact</a>
                 <a href="#music" class="btn btn-outline">Listen</a>
             </div>
@@ -1356,12 +1375,12 @@
                     <h4>Live Performance</h4>
                     <p>Full band shows with The Immutable String Band, solo acoustic sets, or duo configurations. Bluegrass, old-time, and original music.</p>
                 </a>
-                <a href="https://www.youtube.com/watch?v=ahJZ6A-JW_c" target="_blank" class="offering-card">
+                <a href="https://www.youtube.com/watch?v=om0tew-Z4gE" target="_blank" class="offering-card">
                     <div class="offering-image">
-                        <img src="images/live-talks.png" alt="Live Talks">
+                        <img src="images/live-talks-new.jpg" alt="Live Talks">
                         <div class="play-overlay">▶</div>
                     </div>
-                    <h4>Live Talks</h4>
+                    <h4>Talks with Live Coding</h4>
                     <p>Keynotes and presentations on blockchain technology, decentralized systems, and the intersection of music and technology.</p>
                 </a>
                 <a href="https://www.youtube.com/watch?v=Y3s9Fu4yu7o&t=2938" target="_blank" class="offering-card">
@@ -1573,7 +1592,13 @@
                 <p>47 shows across 4 continents</p>
             </div>
             <div class="globe-layout">
-                <div id="globe-container"></div>
+                <div style="position: relative; flex: 1; min-height: 500px;">
+                    <div id="globe-container" style="width: 100%; height: 100%;"></div>
+                    <div id="globe-zoom-controls" style="position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 5px; z-index: 10;">
+                        <button id="zoom-in" style="width: 30px; height: 30px; background: rgba(30,30,30,0.8); border: 1px solid #d4a574; color: #d4a574; font-size: 18px; cursor: pointer; border-radius: 4px;">+</button>
+                        <button id="zoom-out" style="width: 30px; height: 30px; background: rgba(30,30,30,0.8); border: 1px solid #d4a574; color: #d4a574; font-size: 18px; cursor: pointer; border-radius: 4px;">−</button>
+                    </div>
+                </div>
                 <div id="show-info-panel" class="show-info-panel">
                     <img id="show-poster" class="show-poster" src="" alt="Show poster" style="display: none;">
                     <h3 id="show-title"></h3>
@@ -1622,7 +1647,7 @@
     <section id="booking" class="booking">
         <div class="container">
             <div class="section-title">
-                <h2>Contact Justin</h2>
+                <h2>Contact</h2>
                 <p>For performances, talks, and appearances</p>
             </div>
             <div class="booking-grid">
@@ -1632,7 +1657,7 @@
                     <ul>
                         <li><span>Full Band Performance</span><span>3-6 piece band</span></li>
                         <li><span>Solo/Duo Acoustic</span><span>Intimate settings</span></li>
-                        <li><span>Live Talk</span><span>30-60 minutes</span></li>
+                        <li><span>Talks with Live Coding</span><span>5-60 minutes</span></li>
                         <li><span>Podcast</span><span>30-90 minutes</span></li>
                         <li><span>Private Event</span><span>let's talk</span></li>
                     </ul>
@@ -1648,6 +1673,12 @@
                 </div>
                 <div class="booking-form">
                     <h3>Send an Inquiry</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 600;">
+                        Or reach out directly via
+                        <a href="mailto:Booking@JustinHolmes.com" style="color: #d4a574; font-weight: 700;">Email</a>,
+                        <a href="https://t.me/justinmylesholmesoffical" style="color: #d4a574; font-weight: 700;">Telegram</a>, or
+                        <a href="https://instagram.com/JustinMylesHolmes" style="color: #d4a574; font-weight: 700;">Instagram</a>
+                    </p>
                     <form id="booking-form" action="#" method="POST">
                         <div class="form-row">
                             <div class="form-group">
@@ -1659,32 +1690,12 @@
                                 <input type="email" id="email" name="email" required>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="event-type">Event Type</label>
-                                <select id="event-type" name="event-type">
-                                    <option value="">Select...</option>
-                                    <option value="performance">Live Performance</option>
-                                    <option value="talk">Live Talk</option>
-                                    <option value="podcast">Podcast</option>
-                                    <option value="private">Private Event</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="date">Preferred Date</label>
-                                <input type="date" id="date" name="date">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Event Location</label>
-                            <input type="text" id="location" name="location" placeholder="City, Venue, or Virtual">
-                        </div>
                         <div class="form-group">
                             <label for="message">Tell me about your event</label>
                             <textarea id="message" name="message" placeholder="Expected attendance, budget range, any special requests..."></textarea>
                         </div>
                         <button type="submit" class="btn" style="width: 100%;">Send Inquiry</button>
+                        <p style="margin-top: 3rem; text-align: center; color: #d4a574; font-style: italic;">"Self-Proclaimed Bronze Medal Winner, 2026 Fort Stockton, TX - Hackabilly Bluegrass Competition"</p>
                     </form>
                 </div>
             </div>
@@ -1895,130 +1906,307 @@
     <!-- Globe.gl for interactive globe -->
     <script src="https://unpkg.com/globe.gl"></script>
     <script>
-        // Comprehensive show data with posters, ensembles, and setlists
+        // All show data from ARTHEL YAML files
         const shows = [
-            // Shows WITH posters
             {
-                lat: 40.0150, lng: -105.2705,
-                title: "GFEL Boulder 2025",
-                venue: "The Riverside",
-                city: "Boulder, Colorado",
-                block: 21904604,
-                poster: "https://cryptograss.live/assets/images/posters/GFELRC4.png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar", "melodica", "six-whistle"] },
-                    { name: "Skyler Golden", instruments: ["dobro"] },
-                    { name: "Kyle Bestape", instruments: ["mandolin"] },
-                    { name: "Laura Quam", instruments: ["fiddle"] },
-                    { name: "Jake Stargel", instruments: ["bass"] }
-                ],
-                setlist: ["Red Haired Boy", "Nanny State Fiddler", "Dragon Roost Island", "Vowel Sounds", "Bubak and Hungaricus", "Loser"]
+                lat: 50.0755, lng: 14.4378,
+                title: "ETHPrague 2025 First Show",
+                venue: "Burza #4",
+                city: "Prague, Czech Republic",
+                block: 0,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Jakub Vysoky","instruments":["mandolin"]}],
+                setlist: ["Red Haired Boy","Drowsy Maggie","Little Maggie","Nanny State Fiddler","Cork Board","Rueben's Train","Loser","Power Underneath"]
             },
             {
-                lat: 39.7392, lng: -104.9903,
-                title: "Schelling Point",
-                venue: "Number 38",
-                city: "Denver, Colorado",
-                block: 21940657,
-                poster: "https://cryptograss.live/assets/images/posters/SCHELLINGPOINTRC4.png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar"] },
-                    { name: "Skyler Golden", instruments: ["bass"] },
-                    { name: "Laura Quam", instruments: ["fiddle"] },
-                    { name: "Chris Elliott", instruments: ["banjo"] },
-                    { name: "Jake Stargel", instruments: ["mandolin"] }
-                ],
-                setlist: ["Rueben's Train", "Garfield's Blackberry Blossom", "From Bill to Brewster", "Terrapin Station", "Nanny State Fiddler"]
+                lat: 50.0755, lng: 14.4378,
+                title: "ETHPrague 2025 Second Show",
+                venue: "Bike Jesus",
+                city: "Prague, Czech Republic",
+                block: 0,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Pavel Bohm","instruments":["dobro"]}],
+                setlist: ["The Morning of The Bank Run","The Frog","Dragon Roost Island","Song of Storms","Terrapin Station","Paint Exchange","Lost","As long as I am in this world, you will never hack alone","Shady Grove","Clinch Mountain Backstep","Garfield's Blackberry Blossom","Silver .44","I Know You Rider","The Two Sisters"]
             },
             {
-                lat: 39.4817, lng: -106.0384,
-                title: "GRASSBurn Zero",
-                venue: "Crucible",
-                city: "Breckenridge, Colorado",
-                block: 21984926,
-                poster: "https://cryptograss.live/assets/images/posters/GRASSBURNIRLRC1.png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar"] },
-                    { name: "Skyler Golden", instruments: ["bass"] },
-                    { name: "Chris Elliott", instruments: ["banjo"] },
-                    { name: "Jake Stargel", instruments: ["mandolin"] }
-                ],
-                setlist: ["Red Haired Boy", "The Morning of the Bank Run", "Lost", "The Two Sisters", "Power Underneath", "Salt Creek", "Shady Grove", "Silver .44", "Song of Storms", "Loser", "Hell or High Water"]
+                lat: -33.9249, lng: 18.4241,
+                title: "EthCapetown 2019",
+                venue: "",
+                city: "Capetown, South Africa",
+                block: 7624763,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","Laúd","kalimba"]}],
+                setlist: ["Mercedes Benz","Is it a money thing?","Give Freely of The Chain"]
             },
             {
-                lat: 39.7500, lng: -105.0000,
-                title: "Allo DAO Summoning",
-                venue: "Gitcoin Church",
-                city: "Denver, Colorado",
-                block: 21933658,
-                poster: "https://cryptograss.live/assets/images/posters/ALLODAORC5.png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar", "mandolin"] },
-                    { name: "Skyler Golden", instruments: ["bass"] },
-                    { name: "Laura Quam", instruments: ["banjo"] },
-                    { name: "Chris Elliott", instruments: ["bass"] },
-                    { name: "Jake Stargel", instruments: ["guitar", "bass"] }
-                ],
-                setlist: ["Hell or High Water", "Clinch Mountain Backstep", "Shady Grove", "Drowsy Maggie", "Paint Exchange", "All the Tired Horses", "Song of Storms", "Salt Creek"]
+                lat: 40.6782, lng: -73.9442,
+                title: "EthNY 2019",
+                venue: "Brooklyn Navy Yard",
+                city: "Brooklyn, New York",
+                block: 7729184,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","Laúd","six-whistle","kalimba"]}],
+                setlist: ["Vowel Sounds","Ohio"]
+            },
+            {
+                lat: 52.52, lng: 13.405,
+                title: "EthBerlin 2019",
+                venue: "The Factory",
+                city: "Berlin, Germany",
+                block: 8408560,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]}],
+                setlist: ["As long as I am in this world, you will never hack alone"]
+            },
+            {
+                lat: 34.6937, lng: 135.5023,
+                title: "devconV",
+                venue: "",
+                city: "Osaka, Japan",
+                block: 8717612,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","six-whistle","kalimba"]}],
+                setlist: []
+            },
+            {
+                lat: 41.3851, lng: 2.1734,
+                title: "Hello Decentralization",
+                venue: "",
+                city: "Barcelona, Catalonia",
+                block: 11908068,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["Laúd","wood flute","six-whistle","kalimba"]},{"name":"Leify Green","instruments":["guitar","fiddle"]}],
+                setlist: ["The Morning of the Bank Run","Song of Storms","What happens on Layers 0, 1, and 2?"]
             },
             {
                 lat: 52.3676, lng: 4.9041,
-                title: "ETHDam 2025",
-                venue: "Pakhuis de Zwijger",
+                title: "Zero Knowledge Summit 7",
+                venue: "",
                 city: "Amsterdam, Netherlands",
-                block: 22447747,
-                poster: "https://cryptograss.live/assets/images/posters/RC%202%20ETHDam%20tour%20poster%202025(1).png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
-                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
-                    { name: "Skyler Golden", instruments: ["bass"] },
-                    { name: "Bones", instruments: ["banjo"] },
-                    { name: "Seamus", instruments: ["fiddle"] },
-                    { name: "Joshua", instruments: ["cello"] }
-                ],
-                setlist: ["Silver .44", "Paint Exchange", "Lost", "Red Haired Boy", "Drowsy Maggie", "Little Maggie", "Shady Grove", "The Two Sisters", "Nanny State Fiddler"]
+                block: 14628177,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","kalimba"]}],
+                setlist: ["The Morning of The Bank Run"]
             },
             {
-                lat: 44.4881, lng: -71.5698,
-                title: "Porcupine Festival 2025",
+                lat: 52.3676, lng: 4.9041,
+                title: "Justin Holmes @ devconnect cowork",
+                venue: "",
+                city: "Amsterdam, Netherlands",
+                block: 14635630,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","kalimba","six-whistle"]},{"name":"Jakub Vysoky","instruments":["ukelele","cajon"]}],
+                setlist: ["What goes on the blockchain?","The Morning of The Bank Run","Hell or High Water","Song of Storms"]
+            },
+            {
+                lat: 52.3676, lng: 4.9041,
+                title: "devconnect 2022",
+                venue: "",
+                city: "Amsterdam, Netherlands",
+                block: 14655789,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","kalimba","six-whistle"]},{"name":"Shaka Lei Kaumaka","instruments":["bass","percussion"]}],
+                setlist: ["Hell or High Water","Zero Knowledge and Time Machines","Song of Time","The Morning of The Bank Run","Todo es Posible","Song of Storms"]
+            },
+            {
+                lat: 41.3851, lng: 2.1734,
+                title: "EthBarcelona 2022",
+                venue: "Centre Convencions International Barcelona",
+                city: "Barcelona, Catalonia",
+                block: 15232479,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","six-whistle","melodica"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"David Flores Pradillas","instruments":["fiddle"]},{"name":"Shaka Lei Kaumaka","instruments":["bass","cajon"]}],
+                setlist: ["The Morning of The Bank Run","Todo es Posible","Millennial Fair","Nanny State Fiddler","Song of Storms","Vowel Sounds","Cork Board","Hell or High Water","Thresholds and Enclaves"]
+            },
+            {
+                lat: 52.52, lng: 13.405,
+                title: "Zero Knowledge Summit 8",
+                venue: "",
+                city: "Berlin, Germany",
+                block: 15539549,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","melodica","six-whistle","kalimba"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Shaka Lei Kaumaka","instruments":["bass"]}],
+                setlist: ["Song of Storms","Nanny State Fiddler","Cork Board","The Two Sisters","Power Underneath","Hell or High Water","Salt Creek","Hell or High Water"]
+            },
+            {
+                lat: 52.52, lng: 13.405,
+                title: "re:generate / The Merge",
+                venue: "Full Node",
+                city: "Berlin, Germany",
+                block: 15540733,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","melodica","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Shaka Lei Kaumaka","instruments":["bass"]}],
+                setlist: ["Lost","Song of Storms","I Just Wanna Play","Simple Melody; Simple Peace","Dragon Roost Island","The Morning of the Bank Run","Power Underneath","Vowel Sounds"]
+            },
+            {
+                lat: 52.52, lng: 13.405,
+                title: "Threshodlers welcome you to The Bridge",
+                venue: "Treptower Bridge",
+                city: "Berlin, Germany",
+                block: 15546631,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","melodica","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Shaka Lei Kaumaka","instruments":["bass"]}],
+                setlist: ["Hell or High Water","Todo Es Posible","Lost","Last Train from Poor Valley","Millennial Fair","Simple Melody; Simple Peace","Dragon Roost Island","Wind and Rain","Nanny State Fiddler"]
+            },
+            {
+                lat: 4.711, lng: -74.0721,
+                title: "devcon VI night 1",
+                venue: "chiva lounge",
+                city: "Bogotá, Colombia",
+                block: 15735471,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","piano","melodica","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Pepa Lopera","instruments":["fiddle"]},{"name":"Shaka Lei Kaumaka","instruments":["bass"]}],
+                setlist: ["Wind and Rain","Dragon Roost Island","Vowel Sounds","Hell or High Water","Chrono Trigger","Bubak and Hungaricus","Q&A","Nanny State Fiddler"]
+            },
+            {
+                lat: 4.711, lng: -74.0721,
+                title: "devcon VI night 2",
+                venue: "chiva lounge",
+                city: "Bogotá, Colombia",
+                block: 15742928,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","piano","melodica","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Pepa Lopera","instruments":["fiddle"]},{"name":"Shaka Lei Kaumaka","instruments":["bass","percussion"]}],
+                setlist: ["Last Train From Poor Valley","Hard Time / Killing Floor Blues","Morrison's Jig","I Lost My Seed Phrase","Millennial Fair","Power Underneath","Song of Storms","Cork Board","The Decisive Battle","Victory-ff4","Clandestino","The Morning of the Bank Run"]
+            },
+            {
+                lat: 39.7392, lng: -104.9903,
+                title: "Threshold Network @ River",
+                venue: "River Bar Denver",
+                city: "Denver, Colorado",
+                block: 16751390,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Cory Walker","instruments":["5-string banjo"]},{"name":"Christian Ward","instruments":["fiddle"]},{"name":"Jake Stargel","instruments":["bass"]}],
+                setlist: ["Barlow's Jig","Rollups and Rearview Mirrors","From Bill to Brewster","The Two Sisters","Cork Board","Last Train From Poor Valley","Bubak and Hungaricus","Rooster","Hell or High Water","Song of Storms","Power Underneath","gm☕","The Morning of the Bank Run"]
+            },
+            {
+                lat: 39.7392, lng: -104.9903,
+                title: "EthDenver 2023",
+                venue: "National Western Stock Show",
+                city: "Denver, Colorado",
+                block: 16758794,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Cory Walker","instruments":["5-string banjo"]},{"name":"Christian Ward","instruments":["fiddle"]},{"name":"Jake Stargel","instruments":["bass"]}],
+                setlist: ["Lost","Dragon Roost Island","Vowel Sounds","Nanny State Fiddler","Barlow's Jig"]
+            },
+            {
+                lat: 50.4167, lng: 14.25,
+                title: "Festival MY 2023",
+                venue: "Farmě v Krabčicích",
+                city: "Krabčicích, Czech Republic",
+                block: 17350845,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Honza Špringl","instruments":["5-string banjo (clawhammer)"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Jirka Hoření","instruments":["bass"]},{"name":"Petr Potoček","instruments":["dobro"]},{"name":"Jarda Vysoky","instruments":["accordion"]}],
+                setlist: ["Morrison's Jig","Hell or High Water","Barlow's Jig","The Two Sisters","Dragon Roost Island","The Morning of the Bank Run","Bubak and Hungaricus"]
+            },
+            {
+                lat: 50.4253, lng: 14.2619,
+                title: "Roudnice Castle (RCNL Podzámčí)",
+                venue: "Roudnice Castle (RCNL Podzámčí)",
+                city: "Roudnice nad Labem, Czech Republic",
+                block: 17359159,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Honza Špringl","instruments":["5-string banjo (clawhammer)"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Jirka Hoření","instruments":["bass"]},{"name":"Jarda Vysoky","instruments":["accordion"]}],
+                setlist: ["Song of Storms","Nanny State Fiddler","Morrison's Jig","Jirka's 12","Bubak and Hungaricus","Dragon Roost Island","Hell or High Water","Medvidek","Slavíci Z Madridu"]
+            },
+            {
+                lat: 50.0755, lng: 14.4378,
+                title: "EthPrague 2023",
+                venue: "La Fabrika",
+                city: "Prague, Czech Republic",
+                block: 17451407,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Honza Špringl","instruments":["5-string banjo (clawhammer)"]},{"name":"Petr Potoček","instruments":["dobro"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Jirka Hoření","instruments":["bass"]},{"name":"Jarda Vysoky","instruments":["accordion"]}],
+                setlist: ["The Morning of The Bank Run","Barlow's Jig","Dragon Roost Island","Slavíci Z Madridu","Nanny State Fiddler","The Two Sisters","Vowel Sounds","Bubak and Hungaricus"]
+            },
+            {
+                lat: 41.3851, lng: 2.1734,
+                title: "EthBarcelona 2023",
+                venue: "BIG C",
+                city: "Barcelona, Catalonia",
+                block: 17642973,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","six-whistle","melodica"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Fabian Aguilera","instruments":["bass"]}],
+                setlist: ["Morrison's Jig","Hell or High Water (A Policeman and a Fortune Teller)","The World","From Bill to Brewster","Rollups and Rearview Mirrors","Barlow's Jig","Power Underneath","The Morning of the Bank Run","Manzanita"]
+            },
+            {
+                lat: 41.3851, lng: 2.1734,
+                title: "Hootena @ EthBarcelona doorway",
+                venue: "BIG C",
+                city: "Barcelona, Catalonia",
+                block: 17658380,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","six-whistle","melodica"]},{"name":"Jakub Wysoky","instruments":["mandolin"]},{"name":"Kuba Hejhal","instruments":["fiddle"]}],
+                setlist: ["Nanny State Fiddler","Song of Storms","Dragon Roost Island","The Two Sisters","Power Underneath","Cork Board","Barlow's Jig","Manzanita","Bubak and Hungaricus","Lost"]
+            },
+            {
+                lat: 48.8566, lng: 2.3522,
+                title: "Gitcoin House Paris",
+                venue: "Gitcoin House",
+                city: "Paris, France",
+                block: 17728577,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","six-whistle","melodica"]}],
+                setlist: ["Hell or High Water (a Policeman and a Fortune Teller)","The Morning of the Bank Run","Power Underneath","Cork Board","Where Rainbows Never Die","Song of Storms","Song of Time","Rollups and Rearview Mirrors"]
+            },
+            {
+                lat: 45.5155, lng: -122.6789,
+                title: "Global Forum on Ethereum Localism 2023",
+                venue: "Bridgespace",
+                city: "Portland, Oregon",
+                block: 18344309,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","six-whistle"]},{"name":"Open Tony","instruments":["fiddle"]},{"name":"Miriam Hacksaw","instruments":["fiddle"]},{"name":"Kyle Bestape","instruments":["mandolin"]}],
+                setlist: ["Where are we?","Hell or High Water (a Policeman and a Fortune Teller)","Is it a money thing?","Open Up","On Quantum Implications of Local Movements","Lost","Last Train From Poor Valley","The Morning of The Bank Run","Nanny State Fiddler","Silver .44","Loser","Drowsy Maggie","Little Maggie","Drowsy Maggie","Power Underneath","Song of Time"]
+            },
+            {
+                lat: 39.7392, lng: -104.9903,
+                title: "MycoFi Day",
+                venue: "Gitcoin House",
+                city: "Denver, Colorado",
+                block: 19336308,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute"]},{"name":"Skyler Golden","instruments":["bass","dobro"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Laura Quam","instruments":["fiddle"]}],
+                setlist: ["Power Underneath","Song of Storms","Lost","Loser","Rollups and Rearview Mirrors","Swallowtail Jig","Kesh Jig","Last Train From Poor Valley","Nanny State Fiddler","O Death","Mercedes Benz","The Morning of The Bank Run","Angel Band","Ashokan Farewell","Can the Circle Be Unbroken? (By and By)"]
+            },
+            {
+                lat: 36.1627, lng: -86.7816,
+                title: "Justin Holmes + David Grier",
+                venue: "Tunesmith Studios",
+                city: "Nashville, Tennessee",
+                block: 19569155,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle"]},{"name":"David Grier","instruments":["guitar"]}],
+                setlist: ["Drowsy Maggie","Barlow's Jig"]
+            },
+            {
+                lat: 44.4903, lng: -71.5692,
+                title: "Porcupine 2024",
                 venue: "North Country Camp",
                 city: "Lancaster, New Hampshire",
-                block: 22748946,
-                poster: "https://cryptograss.live/assets/images/posters/porcupine2025-poster.png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
-                    { name: "Skyler Golden", instruments: ["bass"] }
-                ],
-                setlist: ["Hell or High Water", "Rueben's Train", "Red Haired Boy", "Drowsy Maggie", "Little Maggie", "Song of Storms", "Power Underneath", "The Morning of The Bank Run", "Shady Grove", "Salt Creek", "Loser", "Vowel Sounds", "Proximity"]
+                block: 20150677,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","mandolin","wood flute","six-whistle"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Mike Merenda","instruments":["banjo"]},{"name":"Brendan Daniel","instruments":["guitar"]}],
+                setlist: ["The Two Sisters","Lost","Paint Exchange","On My Way Home","Dire Wolf","Silver .44","Cork Board","Needle On The Outskirts","The Morning of The Bank Run","Free State of Mind","Seven Bridges Road"]
             },
             {
-                lat: 52.5200, lng: 13.4050,
-                title: "web3summit 2024",
-                venue: "Funkhaus Berlin",
-                city: "Berlin, Germany",
-                block: 20570887,
-                poster: "https://cryptograss.live/assets/images/posters/web3summit-2024.png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
-                    { name: "Skyler Golden", instruments: ["bass"] },
-                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
-                    { name: "Kuba Hejhal", instruments: ["fiddle"] }
-                ],
-                setlist: ["August", "Last Train From Poor Valley", "Salt Creek", "The Two Sisters", "Victory", "Swords to Ploughshares", "Man of Constant Sorrow", "Nanny State Fiddler", "Lost", "Rueben's Train", "Rollups and Rearview Mirrors"]
+                lat: 50.8503, lng: 4.3517,
+                title: "DAO Brussels",
+                venue: "Commons Hub Brussels",
+                city: "Brussels, Belgium",
+                block: 20226737,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","melodica","six-whistle"]},{"name":"Skyler Golden","instruments":["bass"]}],
+                setlist: ["The Morning of The Bank Run","Dire Wolf","Nanny State Fiddler","Song of Storms","Vowel Sounds"]
             },
             {
-                lat: 52.5100, lng: 13.4200,
-                title: "MOOS Space 2024",
-                venue: "MOOS Space",
-                city: "Berlin, Germany",
-                block: 20550008,
-                poster: "https://cryptograss.live/assets/images/posters/moos-space-2024.png",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
-                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
-                    { name: "Kuba Hejhal", instruments: ["fiddle"] }
-                ],
-                setlist: ["Hell or High Water", "Song of Storms", "Red Haired Boy", "Silver .44", "The Goy's Teeth", "Manzanita", "O Death", "Loser", "Paint Exchange", "Drowsy Maggie", "Dragon Roost Island"]
+                lat: 50.8503, lng: 4.3517,
+                title: "Arbitrum Govhack Brussels 2024",
+                venue: "Brussels Doubletree",
+                city: "Brussels, Belgium",
+                block: 20254790,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["wood flute"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Kuba Hejhal","instruments":["fiddle"]}],
+                setlist: ["Lost","What is consensus?","Dragon Roost Island","Nanny State Fiddler","Rollups and Rearview Mirrors","Cork Board","Drowsy Maggie","Man of Constant Sorrow"]
             },
             {
                 lat: 50.8503, lng: 4.3517,
@@ -2027,33 +2215,159 @@
                 city: "Brussels, Belgium",
                 block: 20277935,
                 poster: "https://cryptograss.live/assets/images/posters/regens-brussels-2024.jpeg",
-                ensemble: [
-                    { name: "Justin Holmes", instruments: ["guitar", "melodica"] },
-                    { name: "Skyler Golden", instruments: ["bass"] },
-                    { name: "Jakub Vysoky", instruments: ["mandolin"] },
-                    { name: "Kuba Hejhal", instruments: ["fiddle"] }
-                ],
-                setlist: ["Paint Exchange", "Hell or High Water", "Salt Creek", "Cicada Song", "Lost", "Loser", "Song of Storms", "Power Underneath", "The Morning of The Bank Run", "Silver .44", "Nanny State Fiddler"]
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","mandolin","six-whistle","melodica"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Kyle Bestape","instruments":["mandolin"]}],
+                setlist: ["Paint Exchange","Hell or High Water","Salt Creek","Hell or High Water","Cicada Song","Lost","Loser","Song of Storms","Power Underneath","Oh, the Dreadful Wind and Rain","The Morning of The Bank Run","Seven Bridges Road","Silver .44","Back Up and Push","Nanny State Fiddler","August"]
             },
-            // Shows WITHOUT posters
-            { lat: 41.3851, lng: 2.1734, title: "Hello Decentralization", venue: "Barcelona", city: "Barcelona, Spain", block: 11908068 },
-            { lat: 41.3874, lng: 2.1686, title: "EthBarcelona 2022", venue: "Centre Convencions", city: "Barcelona, Spain", block: 15232479 },
-            { lat: 41.3880, lng: 2.1690, title: "EthBarcelona 2023", venue: "BIG C", city: "Barcelona, Spain", block: 17642973 },
-            { lat: 52.3680, lng: 4.9045, title: "Zero Knowledge Summit 7", venue: "Amsterdam", city: "Amsterdam, Netherlands", block: 14628177 },
-            { lat: 52.3670, lng: 4.9035, title: "devconnect 2022", venue: "Amsterdam", city: "Amsterdam, Netherlands", block: 14655789 },
-            { lat: 52.5205, lng: 13.4055, title: "Zero Knowledge Summit 8", venue: "Berlin", city: "Berlin, Germany", block: 15539549 },
-            { lat: 52.5195, lng: 13.4045, title: "re:generate / The Merge", venue: "Full Node", city: "Berlin, Germany", block: 15540733 },
-            { lat: 4.7110, lng: -74.0721, title: "devcon VI night 1", venue: "Chiva Lounge", city: "Bogotá, Colombia", block: 15735471 },
-            { lat: 4.7115, lng: -74.0725, title: "devcon VI night 2", venue: "Chiva Lounge", city: "Bogotá, Colombia", block: 15742928 },
-            { lat: 50.0755, lng: 14.4378, title: "EthPrague 2023", venue: "La Fabrika", city: "Prague, Czech Republic", block: 17451407 },
-            { lat: 50.0760, lng: 14.4380, title: "ETHPrague 2025", venue: "Burza #4 / Bike Jesus", city: "Prague, Czech Republic", block: 22575700 },
-            { lat: 50.4251, lng: 14.2618, title: "Kuba Hejhal Memorial", venue: "Koruna", city: "Roudnice nad Labem, Czech Republic", block: 22504683 },
-            { lat: 36.1627, lng: -86.7816, title: "Justin Holmes + David Grier", venue: "Tunesmith Studios", city: "Nashville, Tennessee", block: 19569155 },
-            { lat: 45.5152, lng: -122.6784, title: "GFEL 2023", venue: "Bridgespace", city: "Portland, Oregon", block: 18344309 },
-            { lat: 40.6782, lng: -73.9442, title: "EthNY 2019", venue: "Brooklyn Navy Yard", city: "Brooklyn, New York", block: 7729184 },
-            { lat: -33.9249, lng: 18.4241, title: "EthCapetown 2019", venue: "Cape Town", city: "Cape Town, South Africa", block: 7624763 },
-            { lat: 34.6937, lng: 135.5023, title: "devconV", venue: "Osaka", city: "Osaka, Japan", block: 8717612 },
-            { lat: 48.8566, lng: 2.3522, title: "Gitcoin House Paris", venue: "Gitcoin House", city: "Paris, France", block: 17728577 }
+            {
+                lat: 50.8503, lng: 4.3517,
+                title: "Building Network States: Atoms Edition",
+                venue: "Brussels Aquaponic Farm - BIGH Anderlecht",
+                city: "Brussels, Belgium",
+                block: 20477451,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Kyle Bestape","instruments":["mandolin"]}],
+                setlist: ["Dragon Roost Island","Back Up and Push","Salt Creek","Drowsy Maggie","Lost","Fish and Whistle","Aquanoodle","Rueben's Train"]
+            },
+            {
+                lat: 50.43, lng: 14.265,
+                title: "Bar Vorovka",
+                venue: "Bar Vorovka",
+                city: "Vědomice-Roudnice, Czech Republic",
+                block: 20528222,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle","melodica"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]}],
+                setlist: ["Lost","Back Up and Push","Millennial Fair","Nanny State Fiddler","Manzanita","Can the Circle Be Unbroken","Shady Grove","Seven Bridges Road","Hell or High Water","August","Silver .44","Red Haired Boy","Where Rainbows Never Die","The Frog","Bubak and Hungaricus","Power Underneath"]
+            },
+            {
+                lat: 50.0755, lng: 14.4378,
+                title: "Klub Betlémská",
+                venue: "Klub Betlémská",
+                city: "Prague, Czech Republic",
+                block: 20535679,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","wood flute","six-whistle"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]}],
+                setlist: ["Paint Exchange","The Two Sisters","Cork Board","Loser","Drowsy Maggie","The Morning of The Bank Run","Dragon Roost Island"]
+            },
+            {
+                lat: 52.52, lng: 13.405,
+                title: "MOOS Space",
+                venue: "MOOS Space",
+                city: "Berlin, Germany",
+                block: 20550008,
+                poster: "https://cryptograss.live/assets/images/posters/moos-space-2024.png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","six-whistle","melodica"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]}],
+                setlist: ["Hell or High Water","Song of Storms","Red Haired Boy","Silver .44","Song of Storms","The Goy's Teeth","Manzanita","O Death","Loser","Seven Bridges Road","Paint Exchange","Drowsy Maggie","Little Maggie","Dragon Roost Island","Mercedes Benz","Cicada Song","Bubak and Hungaricus","Power Underneath"]
+            },
+            {
+                lat: 52.52, lng: 13.405,
+                title: "web3summit 2024",
+                venue: "Funkhaus Berlin",
+                city: "Berlin, Germany",
+                block: 20570887,
+                poster: "https://cryptograss.live/assets/images/posters/web3summit-2024.png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","melodica","six-whistle"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Kuba Hejhal","instruments":["fiddle"]},{"name":"Jakub Vysoky","instruments":["mandolin"]}],
+                setlist: ["August","Last Train From Poor Valley","Salt Creek","The Two Sisters","victory-ff7","Swords to Ploughshares","Morrison's Jig","Man of Constant Sorrow","Manzanita","Nanny State Fiddler","Lost","The Frog","Rueben's Train","Back Up and Push","Rollups and Rearview Mirrors","Drowsy Maggie","Shady Grove","Dragon Roost Island","The Morning of The Bank Run"]
+            },
+            {
+                lat: 40.015, lng: -105.2705,
+                title: "GFEL Boulder 2025",
+                venue: "The Riverside",
+                city: "Boulder, Colorado",
+                block: 21904604,
+                poster: "https://cryptograss.live/assets/images/posters/GFELRC4.png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","melodica","six-whistle"]},{"name":"Skyler Golden","instruments":["dobro"]},{"name":"Kyle Bestape","instruments":["mandolin"]},{"name":"Laura Quam","instruments":["fiddle"]},{"name":"Jake Stargel","instruments":["bass"]}],
+                setlist: ["Red Haired Boy","Nanny State Fiddler","Dragon Roost Island","Nanny State Fiddler","Vowel Sounds","Bubak and Hungaricus","Loser"]
+            },
+            {
+                lat: 39.7392, lng: -104.9903,
+                title: "Allo DAO Summoning",
+                venue: "Gitcoin Church",
+                city: "Denver, Colorado",
+                block: 21933658,
+                poster: "https://cryptograss.live/assets/images/posters/ALLODAORC5.png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar","melodica","six-whistle"]},{"name":"Skyler Golden","instruments":["dobro"]},{"name":"Kyle Bestape","instruments":["mandolin"]},{"name":"Laura Quam","instruments":["fiddle"]},{"name":"Chris Elliott","instruments":["banjo"]},{"name":"Jake Stargel","instruments":["bass"]}],
+                setlist: ["Hell or high water","Clinch Mountain Backstep","Shady Grove","Drowsy Maggie","Paint Exchange","You and Whose Army","All the Tired Horses","Song of Storms","Salt Creek"]
+            },
+            {
+                lat: 39.7392, lng: -104.9903,
+                title: "Schelling Point",
+                venue: "Number 38",
+                city: "Denver, Colorado",
+                block: 21940657,
+                poster: "https://cryptograss.live/assets/images/posters/SCHELLINGPOINTRC4.png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Laura Quam","instruments":["fiddle"]},{"name":"Chris Elliott","instruments":["banjo"]},{"name":"Jake Stargel","instruments":["mandolin"]}],
+                setlist: ["Rueben's Train","Garfield's Blackberry Blossom","From Bill to Brewster","Terrapin Station","From Bill to Brewster","Nanny State Fiddler","From Bill to Brewster"]
+            },
+            {
+                lat: 39.4817, lng: -106.0384,
+                title: "GRASSBurn Zero",
+                venue: "Crucible",
+                city: "Breckenridge, Colorado",
+                block: 21984926,
+                poster: "https://cryptograss.live/assets/images/posters/GRASSBURNIRLRC1.png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Chris Elliott","instruments":["banjo"]},{"name":"Jake Stargel","instruments":["mandolin"]}],
+                setlist: ["Red Haired Boy","The Morning of the Bank Run","Lost","Sonic Offerings","The Two Sisters","Power Underneath","Salt Creek","Shady Grove","Sonic Offerings","Silver .44","Song of Storms","Loser","Hell or High Water"]
+            },
+            {
+                lat: 50.4253, lng: 14.2619,
+                title: "Kulturní dům Říp",
+                venue: "Kulturní dům Říp",
+                city: "Roudnice nad Labem, Czech Republic",
+                block: 22390575,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Nick Jennings","instruments":["banjo","dulcimer"]},{"name":"Jakub Vysoky","instruments":["mandolin"]}],
+                setlist: ["Drowsy Maggie","Little Maggie","Power Underneath","Cork Board","Shady Grove","Devil Jam","Hell or High Water","Salt Creek","Hell or High Water"]
+            },
+            {
+                lat: 49.5938, lng: 17.2509,
+                title: "Variace Olomouc",
+                venue: "Variace Olomouc",
+                city: "Olomouc, Czech Republic",
+                block: 22394175,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Bogdan","instruments":["percussion"]}],
+                setlist: ["Lost","Paint Exchange","Rueben's Train","Silver .44","Terrapin Station","Dragon Roost Island","Silver .44"]
+            },
+            {
+                lat: 50.2294, lng: 17.2044,
+                title: "Vinckovo",
+                venue: "Vinckovo",
+                city: "Jesenik, Czech Republic",
+                block: 22406012,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Ondra Kozak","instruments":["fiddle"]}],
+                setlist: ["Red Haired Boy","Song of Storms","The Morning of The Bank Run","Manzanita","Nanny State Fiddler","O Death","Clinch Mountain Backstep","The Two Sisters","Can the Circle Be Unbroken"]
+            },
+            {
+                lat: 52.3676, lng: 4.9041,
+                title: "ETHDam 2025",
+                venue: "Pakhuis de Zwijger",
+                city: "Amsterdam, Netherlands",
+                block: 22447747,
+                poster: "https://cryptograss.live/assets/images/posters/RC 2 ETHDam tour poster 2025(1).png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Bones","instruments":["banjo"]},{"name":"Seamus","instruments":["fiddle"]},{"name":"Joshua","instruments":["cello"]}],
+                setlist: ["Silver .44","Paint Exchange","Lost","Red Haired Boy","Drowsy Maggie","Little Maggie","Shady Grove","The Two Sisters","Nanny State Fiddler"]
+            },
+            {
+                lat: 50.4253, lng: 14.2619,
+                title: "Kuba Hejhal Memorial",
+                venue: "Koruna",
+                city: "Roudnice nad Labem, Czech Republic",
+                block: 22504683,
+                poster: null,
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]},{"name":"Jakub Vysoky","instruments":["mandolin"]},{"name":"Honza Špringl","instruments":["5-string banjo","tenor banjo","guitar"]}],
+                setlist: ["Red Haired Boy","Lady Be Good","Old Joe Clark","Power Underneath","Dragon Roost Island","Jednou mi fotr povídá","Can the Circle Be Unbroken? (By and By)","Smrti"]
+            },
+            {
+                lat: 44.4903, lng: -71.5692,
+                title: "Porcupine 2025",
+                venue: "North Country Camp",
+                city: "Lancaster, New Hampshire",
+                block: 22748946,
+                poster: "https://cryptograss.live/assets/images/posters/porcupine2025-poster.png",
+                ensemble: [{"name":"Justin Holmes","instruments":["guitar"]},{"name":"Skyler Golden","instruments":["bass"]}],
+                setlist: ["Hell or High Water","Rueben's Train","Red Haired Boy","Drowsy Maggie","Little Maggie","Song of Storms","Power Underneath","The Morning of The Bank Run","Shady Grove","Salt Creek","Loser","Vowel Sounds","Proximity","Terrapin Station","Dragon Roost Island","Silver .44","I Know You Rider","Garfield's Blackberry Blossom","Paint Exchange"]
+            }
         ];
 
         // Initialize globe
@@ -2165,13 +2479,32 @@
         }
 
         if (globeContainer) {
+            // Apply offset to shows at the same location
+            const locationGroups = {};
+            shows.forEach(show => {
+                const key = `${show.lat.toFixed(2)},${show.lng.toFixed(2)}`;
+                if (!locationGroups[key]) locationGroups[key] = [];
+                locationGroups[key].push(show);
+            });
+
+            Object.values(locationGroups).forEach(group => {
+                if (group.length > 1) {
+                    const offset = 1.0; // degrees offset
+                    group.forEach((show, i) => {
+                        const angle = (2 * Math.PI * i) / group.length;
+                        show.lat += offset * Math.cos(angle);
+                        show.lng += offset * Math.sin(angle);
+                    });
+                }
+            });
+
             // Create pin marker element
             const createPinElement = (d) => {
                 const el = document.createElement('div');
                 el.innerHTML = `
                     <svg width="24" height="36" viewBox="0 0 24 36" style="cursor: pointer; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.4));">
-                        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12z" fill="${d.poster ? '#d4a574' : '#888888'}"/>
-                        <circle cx="12" cy="12" r="5" fill="${d.poster ? '#1a1a1a' : '#555555'}"/>
+                        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12z" fill="#d4a574"/>
+                        <circle cx="12" cy="12" r="5" fill="#1a1a1a"/>
                     </svg>
                 `;
                 el.style.pointerEvents = 'auto';
@@ -2189,7 +2522,7 @@
                     const el = createPinElement(d);
                     el.onclick = () => {
                         displayShowInfo(d);
-                        globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.2 }, 1000);
+                        globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.6 }, 1000);
                     };
                     return el;
                 })
@@ -2216,7 +2549,20 @@
             });
 
             // Set initial view - zoomed in closer
-            globe.pointOfView({ lat: 30, lng: 0, altitude: 1.4 });
+            globe.pointOfView({ lat: 30, lng: 0, altitude: 0.6 });
+
+            // Zoom controls
+            let currentAltitude = 0.6;
+            document.getElementById('zoom-in').addEventListener('click', () => {
+                currentAltitude = Math.max(0.1, currentAltitude - 0.15);
+                const pov = globe.pointOfView();
+                globe.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: currentAltitude }, 300);
+            });
+            document.getElementById('zoom-out').addEventListener('click', () => {
+                currentAltitude = Math.min(2.5, currentAltitude + 0.15);
+                const pov = globe.pointOfView();
+                globe.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: currentAltitude }, 300);
+            });
         }
     </script>
 </body>
