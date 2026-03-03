@@ -1318,6 +1318,7 @@
                 <li><a href="#places"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Places</a></li>
                 <li><a href="#videos">Videos</a></li>
                 <li><a href="#booking">Contact</a></li>
+                <li><a href="#mailing-list">Stay in the Loop</a></li>
             </ul>
         </div>
     </nav>
@@ -1326,7 +1327,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Justin Holmes</h1>
-                <p style="color: #d4a574; font-weight: 700; margin-bottom: 0.5rem;">Self-Proclaimed Bronze Medal Winner, 2026 Fort Stockton, TX - Hackabilly Bluegrass Competition</p>
+                <p style="color: #d4a574; font-weight: 700; margin-bottom: 0.5rem;">Self-Proclaimed Bronze Medal Winner,<br>2027 Hackabilly Bluegrass Competition</p>
                 <p>Founder of Cryptograss, PickiPedia, and The Immutable String Band.</p>
                 <a href="#booking" class="btn">Contact</a>
                 <a href="#music" class="btn btn-outline">Listen</a>
@@ -1381,7 +1382,7 @@
                         <div class="play-overlay">▶</div>
                     </div>
                     <h4>Talks with Live Coding</h4>
-                    <p>Keynotes and presentations on blockchain technology, decentralized systems, and the intersection of music and technology.</p>
+                    <p>From Lightning Talks to Keynotes, on cryptographic primitives, distributed systems, and the intersection of crypto-anarchy and traditional music.</p>
                 </a>
                 <a href="https://www.youtube.com/watch?v=Y3s9Fu4yu7o&t=2938" target="_blank" class="offering-card">
                     <div class="offering-image">
@@ -1589,7 +1590,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>The Places We've Played</h2>
-                <p>47 shows across 4 continents</p>
+                <p>47 shows across 5 continents</p>
             </div>
             <div class="globe-layout">
                 <div style="position: relative; flex: 1; min-height: 500px;">
@@ -1680,6 +1681,8 @@
                         <a href="https://instagram.com/JustinMylesHolmes" style="color: #d4a574; font-weight: 700;">Instagram</a>
                     </p>
                     <form id="booking-form" action="#" method="POST">
+                        <!-- Honeypot - hidden from humans, catches bots -->
+                        <input type="text" name="website" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Your Name</label>
@@ -1695,9 +1698,27 @@
                             <textarea id="message" name="message" placeholder="Expected attendance, budget range, any special requests..."></textarea>
                         </div>
                         <button type="submit" class="btn" style="width: 100%;">Send Inquiry</button>
-                        <p style="margin-top: 3rem; text-align: center; color: #d4a574; font-style: italic;">"Self-Proclaimed Bronze Medal Winner, 2026 Fort Stockton, TX - Hackabilly Bluegrass Competition"</p>
+                        <p style="margin-top: 3rem; text-align: center; color: #d4a574; font-style: italic;">"Self-Proclaimed Bronze Medal Winner,<br>2027 Hackabilly Bluegrass Competition"</p>
                     </form>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mailing-list" class="mailing-list" style="padding: 80px 0; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: #fff;">Stay in the Loop</h2>
+                <p style="color: #d4a574;">Get updates on shows, new music, and cryptograss happenings</p>
+            </div>
+            <div style="max-width: 500px; margin: 0 auto; text-align: center;">
+                <form id="mailing-list-form" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                    <!-- Honeypot - hidden from humans, catches bots -->
+                    <input type="text" name="website" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+                    <input type="email" placeholder="Enter your email" required style="flex: 1; min-width: 250px; padding: 15px 20px; border: 1px solid #d4a574; background: rgba(30,30,30,0.8); color: #fff; border-radius: 5px; font-size: 1rem;">
+                    <button type="submit" class="btn" style="padding: 15px 30px;">Subscribe</button>
+                </form>
+                <p style="margin-top: 1.5rem; color: #888; font-size: 0.9rem;">No spam, just good music and occasional updates</p>
             </div>
         </div>
     </section>
@@ -1771,6 +1792,7 @@
                         <li><a href="#places">Places</a></li>
                         <li><a href="#videos">Videos</a></li>
                         <li><a href="#booking">Contact</a></li>
+                        <li><a href="#mailing-list">Stay in the Loop</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -2562,6 +2584,107 @@
                 currentAltitude = Math.min(2.5, currentAltitude + 0.15);
                 const pov = globe.pointOfView();
                 globe.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: currentAltitude }, 300);
+            });
+        }
+    </script>
+
+    <!-- Form submission handlers -->
+    <script>
+        // Configuration - change this URL when deployed to maybelle
+        const API_BASE = 'https://api.cryptograss.live'; // Production
+        // const API_BASE = 'http://localhost:3001'; // Development
+
+        // Booking inquiry form
+        const bookingForm = document.getElementById('booking-form');
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = bookingForm.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+
+                const formData = {
+                    name: bookingForm.querySelector('#name').value,
+                    email: bookingForm.querySelector('#email').value,
+                    message: bookingForm.querySelector('#message').value,
+                    website: bookingForm.querySelector('input[name="website"]').value // honeypot
+                };
+
+                try {
+                    const response = await fetch(`${API_BASE}/inquiry`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        btn.textContent = 'Sent!';
+                        btn.style.background = '#4a7c4e';
+                        bookingForm.reset();
+                        setTimeout(() => {
+                            btn.textContent = originalText;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    } else {
+                        throw new Error('Failed to send');
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    btn.textContent = 'Error - Try Again';
+                    btn.style.background = '#7c4a4a';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 3000);
+                }
+            });
+        }
+
+        // Mailing list form
+        const mailingForm = document.getElementById('mailing-list-form');
+        if (mailingForm) {
+            mailingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = mailingForm.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Subscribing...';
+                btn.disabled = true;
+
+                const email = mailingForm.querySelector('input[type="email"]').value;
+                const website = mailingForm.querySelector('input[name="website"]').value; // honeypot
+
+                try {
+                    const response = await fetch(`${API_BASE}/subscribe`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, website })
+                    });
+
+                    if (response.ok) {
+                        btn.textContent = 'Subscribed!';
+                        btn.style.background = '#4a7c4e';
+                        mailingForm.reset();
+                        setTimeout(() => {
+                            btn.textContent = originalText;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    } else {
+                        throw new Error('Failed to subscribe');
+                    }
+                } catch (error) {
+                    console.error('Subscription error:', error);
+                    btn.textContent = 'Error - Try Again';
+                    btn.style.background = '#7c4a4a';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 3000);
+                }
             });
         }
     </script>
