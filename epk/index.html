@@ -2594,6 +2594,9 @@
         const API_BASE = 'https://api.cryptograss.live'; // Production
         // const API_BASE = 'http://localhost:3001'; // Development
 
+        // Track when page loaded (for bot detection - bots submit too fast)
+        const pageLoadTime = Date.now();
+
         // Booking inquiry form
         const bookingForm = document.getElementById('booking-form');
         if (bookingForm) {
@@ -2608,7 +2611,8 @@
                     name: bookingForm.querySelector('#name').value,
                     email: bookingForm.querySelector('#email').value,
                     message: bookingForm.querySelector('#message').value,
-                    website: bookingForm.querySelector('input[name="website"]').value // honeypot
+                    website: bookingForm.querySelector('input[name="website"]').value, // honeypot
+                    _t: pageLoadTime // timestamp for bot detection
                 };
 
                 try {
@@ -2660,7 +2664,7 @@
                     const response = await fetch(`${API_BASE}/subscribe`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email, website })
+                        body: JSON.stringify({ email, website, _t: pageLoadTime })
                     });
 
                     if (response.ok) {
