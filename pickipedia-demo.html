@@ -675,9 +675,105 @@
         #keyboard-help {
             padding: 10px 15px;
         }
+
+        /* === BOTTOM-BAR LAYOUT (Option 1 spike, gated by body.bottom-bar) === */
+        body.bottom-bar #rabbithole-sidebar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 440px;
+            border-right: none;
+            border-top: 2px solid #4a7c59;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+            z-index: 50;
+            background: white;
+        }
+
+        body.bottom-bar .layout.with-editor #rabbithole-sidebar {
+            right: 360px;
+        }
+
+        body.bottom-bar .pickipedia-frame {
+            height: calc(100vh - 440px);
+        }
+
+        body.bottom-bar .editor-panel {
+            height: calc(100vh - 440px);
+        }
+
+        body.bottom-bar #rabbithole-sidebar > * {
+            flex-shrink: 0;
+        }
+
+        body.bottom-bar .rabbithole-header {
+            flex-direction: column;
+            height: 100%;
+            width: 80px;
+            padding: 8px 6px;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 6px;
+            position: static;
+        }
+
+        body.bottom-bar .rabbithole-header h1 {
+            font-size: 13px;
+        }
+
+        body.bottom-bar .minimize-btn {
+            display: none;
+        }
+
+        body.bottom-bar .player-container {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 12px;
+            padding: 8px;
+        }
+
+        body.bottom-bar .player-container > * {
+            flex-shrink: 0;
+        }
+
+        body.bottom-bar .song-info-header {
+            width: 220px;
+            padding: 0 4px;
+        }
+
+        body.bottom-bar .song-select {
+            width: 240px;
+            align-self: flex-start;
+        }
+
+        body.bottom-bar .toggle-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            min-width: 180px;
+        }
+
+        body.bottom-bar .webamp-wrapper {
+            width: 290px;
+            min-height: 410px;
+            margin-bottom: 0;
+        }
+
+        body.bottom-bar .data-section {
+            width: 220px;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+            align-self: flex-start;
+        }
     </style>
 </head>
-<body>
+<body class="bottom-bar">
     <div class="layout">
         <div id="rabbithole-sidebar">
             <div class="rabbithole-header" id="rabbithole-header">
