@@ -53,7 +53,7 @@
             grid-template-columns: 56px 1fr 360px;
         }
 
-        .rabbithole-sidebar {
+        #rabbithole-sidebar {
             background: white;
             border-right: 2px solid #4a7c59;
             overflow-y: auto;
@@ -63,7 +63,7 @@
             transition: all 0.3s ease;
         }
 
-        .layout.minimized .rabbithole-sidebar {
+        .layout.minimized #rabbithole-sidebar {
             overflow: hidden;
         }
 
@@ -679,7 +679,7 @@
 </head>
 <body>
     <div class="layout">
-        <div class="rabbithole-sidebar">
+        <div id="rabbithole-sidebar">
             <div class="rabbithole-header" id="rabbithole-header">
                 <img src="./src/images/rabbit.png" alt="Rabbithole" onclick="if(document.querySelector('.layout').classList.contains('minimized')) toggleSidebar()" style="cursor: pointer;">
                 <h1>rabbithole</h1>
