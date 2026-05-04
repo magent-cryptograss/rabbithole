@@ -682,7 +682,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 440px;
+            height: 140px;
             border-right: none;
             border-top: 2px solid #4a7c59;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
@@ -699,11 +699,19 @@
         }
 
         body.bottom-bar .pickipedia-frame {
-            height: calc(100vh - 440px);
+            height: calc(100vh - 140px);
         }
 
         body.bottom-bar .editor-panel {
-            height: calc(100vh - 440px);
+            height: calc(100vh - 140px);
+        }
+
+        /* Cards are absolute-positioned inside #webamp at top:120px, sized
+           for a 269px column. In a 140px bar they'd overflow off-screen.
+           Hide for now; we'll figure out where they live (horizontal pills,
+           two-col stack, etc.) as a separate pass. */
+        body.bottom-bar #ensemble-display-in-webamp {
+            display: none;
         }
 
         body.bottom-bar #rabbithole-sidebar > * {
@@ -760,7 +768,7 @@
 
         body.bottom-bar .webamp-wrapper {
             width: 290px;
-            min-height: 410px;
+            min-height: 116px;
             margin-bottom: 0;
         }
 
