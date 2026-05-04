@@ -677,6 +677,19 @@
         }
 
         /* === BOTTOM-BAR LAYOUT (Option 1 spike, gated by body.bottom-bar) === */
+
+        /* Sidebar leaves the grid flow (position:fixed below), so collapse
+           the layout grid to a single main column. Otherwise the iframe
+           auto-flows into the now-empty 320px sidebar column. */
+        body.bottom-bar .layout,
+        body.bottom-bar .layout.minimized {
+            grid-template-columns: 1fr;
+        }
+        body.bottom-bar .layout.with-editor,
+        body.bottom-bar .layout.minimized.with-editor {
+            grid-template-columns: 1fr 360px;
+        }
+
         body.bottom-bar #rabbithole-sidebar {
             position: fixed;
             bottom: 0;
