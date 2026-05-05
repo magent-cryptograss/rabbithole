@@ -792,7 +792,57 @@
         }
 
         body.bottom-bar .minimize-btn {
+            margin-left: 0;
+        }
+
+        /* === Collapsed bottom-bar (body.bar-collapsed) === */
+        body.bottom-bar.bar-collapsed #rabbithole-sidebar {
+            height: 40px;
+        }
+
+        body.bottom-bar.bar-collapsed .pickipedia-frame {
+            height: calc(100vh - 40px);
+        }
+
+        body.bottom-bar.bar-collapsed .editor-panel {
+            height: calc(100vh - 40px);
+        }
+
+        /* Hide everything except webamp (shaded) and the rabbithole-header
+           (which holds the expand button). */
+        body.bottom-bar.bar-collapsed #ensemble-display,
+        body.bottom-bar.bar-collapsed .data-section,
+        body.bottom-bar.bar-collapsed .song-info-header,
+        body.bottom-bar.bar-collapsed .song-select,
+        body.bottom-bar.bar-collapsed .toggle-row {
             display: none;
+        }
+
+        /* Webamp's shade mode is ~14px tall — shrink the wrapper to match. */
+        body.bottom-bar.bar-collapsed .webamp-wrapper {
+            min-height: 14px;
+            height: 14px;
+            flex: 1 1 auto;
+        }
+
+        /* Compact rabbithole-header in collapsed mode: hide the heading
+           and ALPHA badge, keep the rabbit icon and the expand button. */
+        body.bottom-bar.bar-collapsed .rabbithole-header {
+            width: auto;
+            min-width: 64px;
+            flex-direction: row;
+            gap: 6px;
+            padding: 4px 8px;
+        }
+
+        body.bottom-bar.bar-collapsed .rabbithole-header h1,
+        body.bottom-bar.bar-collapsed .rabbithole-header .alpha {
+            display: none;
+        }
+
+        body.bottom-bar.bar-collapsed .rabbithole-header img {
+            width: 22px;
+            height: 22px;
         }
 
         /* === Misc demo controls — between ensemble and rabbithole-header === */
@@ -1291,6 +1341,12 @@
         // the middle of the viewport). Pin it to the top-left of the
         // webamp-wrapper after a short delay for Webamp to settle.
         if (isBottomBar) {
+            // Initial icon points down (▼) = "click to collapse the bar".
+            const initIcon = document.getElementById('minimize-icon');
+            if (initIcon) initIcon.textContent = '▼';
+        }
+
+        if (isBottomBar) {
             const pinWebamp = (attempts = 0) => {
                 const mainWindow = document.querySelector('#main-window');
                 const webampElement = document.getElementById('webamp');
@@ -1411,10 +1467,26 @@
 
         // Toggle sidebar minimize/maximize
         window.toggleSidebar = function() {
-            const layout = document.querySelector('.layout');
             const icon = document.getElementById('minimize-icon');
-            layout.classList.toggle('minimized');
-            icon.textContent = layout.classList.contains('minimized') ? '▶' : '◀';
+
+            if (document.body.classList.contains('bottom-bar')) {
+                // Collapse the bottom bar AND put Webamp in shade mode.
+                const collapsed = document.body.classList.toggle('bar-collapsed');
+                icon.textContent = collapsed ? '▲' : '▼';
+
+                // Toggle Webamp's windowshade by clicking its own button.
+                // Stays in sync with our state as long as the user doesn't
+                // also click Webamp's button directly.
+                const shadeBtn = document.querySelector(
+                    '#main-window [title*="indowshade"], #main-window .button-windowshade, #title-bar .windowshade'
+                );
+                if (shadeBtn) shadeBtn.click();
+            } else {
+                // Original left-sidebar minimize behavior (column collapse).
+                const layout = document.querySelector('.layout');
+                layout.classList.toggle('minimized');
+                icon.textContent = layout.classList.contains('minimized') ? '▶' : '◀';
+            }
         };
 
         // Mini player controls
