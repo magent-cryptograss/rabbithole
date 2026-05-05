@@ -676,7 +676,22 @@
             padding: 10px 15px;
         }
 
-        /* === BOTTOM-BAR LAYOUT (Option 1 spike, gated by body.bottom-bar) === */
+        /* === BOTTOM-BAR LAYOUT (Option 1 spike, gated by body.bottom-bar) ===
+
+           Three zones, left → right:
+             1.  webamp-wrapper        (LEFT)
+             50. ensemble-display      (MIDDLE, flex-grows)
+             99. rabbithole-header     (RIGHT)
+           Misc demo controls (song-selector, toggles, parts chart, edit btn)
+           tuck in between the middle and the right with mid-range orders.
+        */
+
+        /* Hide ensemble-display in default (non-bottom-bar) mode. In default
+           mode embedMode is false, so this div stays empty anyway, but we
+           hide it explicitly so it never reserves layout space. */
+        body:not(.bottom-bar) #ensemble-display {
+            display: none;
+        }
 
         /* Sidebar leaves the grid flow (position:fixed below), so collapse
            the layout grid to a single main column. Otherwise the iframe
@@ -701,10 +716,12 @@
             box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: row;
+            align-items: stretch;
             overflow-x: auto;
             overflow-y: hidden;
             z-index: 50;
             background: white;
+            gap: 8px;
         }
 
         body.bottom-bar .layout.with-editor #rabbithole-sidebar {
@@ -719,26 +736,56 @@
             height: calc(100vh - 140px);
         }
 
-        /* Cards are absolute-positioned inside #webamp at top:120px, sized
-           for a 269px column. In a 140px bar they'd overflow off-screen.
-           Hide for now; we'll figure out where they live (horizontal pills,
-           two-col stack, etc.) as a separate pass. */
-        body.bottom-bar #ensemble-display-in-webamp {
-            display: none;
+        /* Pull .player-container's children up to be direct flex items of
+           the bar, so we can place each one with its own `order:`. */
+        body.bottom-bar .player-container {
+            display: contents;
         }
 
-        body.bottom-bar #rabbithole-sidebar > * {
+        body.bottom-bar #rabbithole-sidebar > *,
+        body.bottom-bar .player-container > * {
             flex-shrink: 0;
         }
 
+        /* === Zone 1: Webamp (LEFT) === */
+        body.bottom-bar .webamp-wrapper {
+            order: 1;
+            width: 290px;
+            min-height: 116px;
+            margin-bottom: 0;
+        }
+
+        /* === Zone 50: Ensemble (MIDDLE) === */
+        body.bottom-bar #ensemble-display {
+            order: 50;
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 4px;
+            padding: 4px;
+            margin-bottom: 0;
+            min-width: 0;
+            overflow-y: auto;
+        }
+
+        body.bottom-bar #ensemble-display .musician-card {
+            flex: 0 0 auto;
+            width: 160px;
+            padding: 4px 8px;
+        }
+
+        /* === Zone 99: Rabbithole header (RIGHT) === */
         body.bottom-bar .rabbithole-header {
+            order: 99;
             flex-direction: column;
             height: 100%;
             width: 80px;
             padding: 8px 6px;
             align-items: center;
-            justify-content: flex-start;
-            gap: 6px;
+            justify-content: center;
+            gap: 4px;
             position: static;
         }
 
@@ -750,47 +797,36 @@
             display: none;
         }
 
-        body.bottom-bar .player-container {
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            gap: 12px;
-            padding: 8px;
-        }
-
-        body.bottom-bar .player-container > * {
-            flex-shrink: 0;
-        }
-
+        /* === Misc demo controls — between ensemble and rabbithole-header === */
         body.bottom-bar .song-info-header {
-            width: 220px;
+            order: 70;
+            width: 180px;
             padding: 0 4px;
+            align-self: center;
         }
 
         body.bottom-bar .song-select {
-            width: 240px;
-            align-self: flex-start;
+            order: 80;
+            width: 200px;
+            align-self: center;
+            height: 28px;
         }
 
         body.bottom-bar .toggle-row {
-            flex-direction: column;
-            align-items: flex-start;
+            order: 81;
+            flex-direction: row;
+            align-items: center;
             gap: 6px;
-            min-width: 180px;
-        }
-
-        body.bottom-bar .webamp-wrapper {
-            width: 290px;
-            min-height: 116px;
-            margin-bottom: 0;
+            align-self: center;
         }
 
         body.bottom-bar .data-section {
-            width: 220px;
+            order: 82;
+            width: 200px;
             margin-top: 0;
             padding-top: 0;
             border-top: none;
-            align-self: flex-start;
+            align-self: center;
         }
     </style>
 </head>
@@ -865,8 +901,9 @@
                     <div id="parts-chart" class="parts-chart"></div>
                 </div>
 
-                <!-- Hidden container for embed mode compatibility -->
-                <div id="ensemble-display" class="musician-list" style="display: none;"></div>
+                <!-- Ensemble cards in embed/bottom-bar mode. Hidden by CSS
+                     when neither mode is active. -->
+                <div id="ensemble-display" class="musician-list"></div>
             </div>
         </div>
 
@@ -1235,8 +1272,11 @@
         // Initialize player
         const { default: WebampChartifacts } = await import('./src/player/webamp-chartifacts.js');
 
+        // In bottom-bar mode the cards live in #ensemble-display (in the
+        // middle zone of the bar). Default mode keeps cards inside webamp.
+        const isBottomBar = document.body.classList.contains('bottom-bar');
         window.chartifactsPlayer = new WebampChartifacts('webamp-player', window.songChartifactsData, {
-            embedMode: false,
+            embedMode: isBottomBar,
             fixedPosition: false,
             onSoloChange: (musicianName) => {
                 const autoSwitch = document.getElementById('auto-switch-toggle').checked;
@@ -1246,6 +1286,33 @@
                 }
             }
         });
+
+        // In embed mode the player skips the constrain-and-position pass
+        // it does for the full-mode left-sidebar layout, so Webamp's main
+        // window floats wherever its default transform puts it (typically
+        // the middle of the viewport). Pin it to the top-left of the
+        // webamp-wrapper after a short delay for Webamp to settle.
+        if (isBottomBar) {
+            const pinWebamp = (attempts = 0) => {
+                const mainWindow = document.querySelector('#main-window');
+                const webampElement = document.getElementById('webamp');
+                const wrapper = document.querySelector('.webamp-wrapper');
+                if (!mainWindow || !webampElement || !wrapper) {
+                    if (attempts < 30) setTimeout(() => pinWebamp(attempts + 1), 100);
+                    return;
+                }
+                wrapper.appendChild(webampElement);
+                wrapper.style.position = 'relative';
+                webampElement.style.display = 'block';
+                webampElement.style.visibility = 'visible';
+                webampElement.style.opacity = '1';
+                const mainWindowParent = mainWindow.parentElement;
+                if (mainWindowParent && mainWindowParent.style) {
+                    mainWindowParent.style.transform = 'translate(0px, 0px)';
+                }
+            };
+            pinWebamp();
+        }
 
         // Listen for "Apply Changes" from the editor inside the iframe
         // (Release:.../Metadata page). The iframe editor doesn't have a
