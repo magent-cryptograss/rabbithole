@@ -1474,13 +1474,20 @@
                 const collapsed = document.body.classList.toggle('bar-collapsed');
                 icon.textContent = collapsed ? '▲' : '▼';
 
-                // Toggle Webamp's windowshade by clicking its own button.
-                // Stays in sync with our state as long as the user doesn't
-                // also click Webamp's button directly.
-                const shadeBtn = document.querySelector(
-                    '#main-window [title*="indowshade"], #main-window .button-windowshade, #title-bar .windowshade'
-                );
-                if (shadeBtn) shadeBtn.click();
+                // Toggle Webamp's windowshade. Programmatic click() on
+                // Webamp's own #shade div doesn't fire its handler (Webamp
+                // listens for pointerdown, not click), so dispatch the
+                // Redux action directly. The action is a toggle, so we
+                // only fire when our class state DOESN'T already match
+                // Webamp's shade state — keeps us in sync if the user
+                // also poked Webamp's own shade button.
+                if (window.chartifactsPlayer && window.chartifactsPlayer.webamp && window.chartifactsPlayer.webamp.store) {
+                    const store = window.chartifactsPlayer.webamp.store;
+                    const isShaded = store.getState().windows.genWindows.main.shade;
+                    if (collapsed !== isShaded) {
+                        store.dispatch({ type: 'TOGGLE_WINDOW_SHADE_MODE', windowId: 'main' });
+                    }
+                }
             } else {
                 // Original left-sidebar minimize behavior (column collapse).
                 const layout = document.querySelector('.layout');
